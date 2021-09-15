@@ -1,0 +1,37 @@
+.mod-categories {
+  padding: 0;
+}
+
+.mod-playlist__autoplay .icon-container {
+  background: #444;
+}
+
+.mod-playlist__description {
+  color: #EEE;
+}
+
+.mod-headline {
+  border-top: 1px solid #444;
+}
+
+.site-footer {
+  border-top: 1px solid #444;
+}
+
+.site-content {
+  border-bottom: 1px solid #444;
+}
+
+.site-footer {
+  margin-top: 45px;
+}
+
+.site-nav__collections-item {
+  visibility: collapse;
+  width: 0px;
+  margin: 0;
+}
+
+.mod-headline__reserve {
+  width: 150px;
+}
