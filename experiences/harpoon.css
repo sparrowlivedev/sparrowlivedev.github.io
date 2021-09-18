@@ -34,13 +34,17 @@
 
 /* Hide "Protected by InPlayer" line on paywall */
 .Footer__ProtectedByWrapper-sc-5jp7z3-19 {
-  visibility: hidden;
+  display: none;
+}
+
+/* Hide pricing info on paywall */
+.PaymentInfo__InfoHolder-sc-3k097-1 {
+  display: none;
 }
 
 /* Hide credit card input form on paywall */
 .CardPayment__Wrapper-cysy45-0 {
-  visibility: hidden;
-  height: 10px;
+  display: none;
 }
 
 /* Straighten out the add voucher icon */
