@@ -34,7 +34,7 @@
 
 /* Hide "Protected by InPlayer" line on paywall */
 .Footer__ProtectedByWrapper-sc-5jp7z3-19 {
-  display: none;
+  visibility: hidden;
 }
 
 /* Hide pricing info on paywall */
