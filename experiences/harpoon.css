@@ -47,6 +47,11 @@
   display: none;
 }
 
+/* Hide 'Credit Card' header on paywall */
+.shared__Header-sc-1whfsat-6 {
+  display: none;
+}
+
 /* Straighten out the add voucher icon */
 .hGPMpx {
   padding: 1px;
