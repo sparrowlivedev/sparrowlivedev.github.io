@@ -32,6 +32,12 @@
   width: 150px;
 }
 
+/* Hide "Protected by InPlayer" line on paywall */
 .Footer__ProtectedByWrapper-sc-5jp7z3-19 {
+  visibility: hidden;
+}
+
+/* Hide credit card input form on paywall */
+.CardPayment__Wrapper-cysy45-0 {
   visibility: hidden;
 }
