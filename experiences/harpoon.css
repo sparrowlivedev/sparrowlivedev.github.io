@@ -40,6 +40,7 @@
 /* Hide credit card input form on paywall */
 .CardPayment__Wrapper-cysy45-0 {
   visibility: hidden;
+  height: 10px;
 }
 
 /* Straighten out the add voucher icon */
