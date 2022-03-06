@@ -20,13 +20,109 @@ body {
   background-color: #fff;
 }
 
-.inplayer-paywall-login {
+.navbar-end .auth-button {
+  width: 130px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 0 2px #819EA6;
+  margin-left: auto;
+  cursor: pointer;
+  height: 100%;
   float: right;
   margin-top: 60px;
   margin-right: 40px;
 }
 
-/** Inplayer account modal **/
+.navbar-end .navbar-dropdown {
+  width: 130px; /* This controls the size of the My Account menu button. */
+  display: block;
+  margin-left: auto;
+  background-color: #fff; /* This controls the size of the My Account menu button. (#fff is White) */                                                                                             border-radius: 5px;
+  box-shadow: 0 0 2px #819EA6;
+  transition: all .5s ease;
+  position: relative;
+  font-size: 14px; /* This controls the size of the font in the My Account menu. */
+  color: #474747;
+  height: 100%;
+  text-align: center;
+  float: right;
+  margin-top: 60px;
+  margin-right: 40px;
+}
+
+.navbar-end .navbar-dropdown .select {
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+}
+
+.navbar-end .navbar-dropdown .select>i {
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  float: right;
+  line-height: 20px;
+}
+
+.navbar-end .navbar-dropdown:hover {
+  box-shadow: 0 0 4px rgb(204, 204, 204);
+}
+
+.navbar-end .navbar-dropdown:active {
+  background-color: #f8f8f8;
+}
+
+.navbar-end .navbar-dropdown.active:hover, .navbar .navbar-dropdown.active {
+  box-shadow: 0 0 4px rgb(204, 204, 204);
+  border-radius: 5px 5px 0 0;
+  background-color: #f8f8f8;
+}
+
+.navbar-end .navbar-dropdown.active .select>i {
+  transform: rotate(-90deg);
+}
+
+.navbar-end .navbar-dropdown .dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  margin-top: 1px;
+  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  border-radius: 0 1px 5px 5px;
+  overflow: hidden;
+  display: none;
+  max-height: 144px;
+  overflow-y: auto;
+  z-index: 9;
+}
+
+.navbar-end .navbar-dropdown .dropdown-menu li {
+  padding: 10px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.navbar-end .navbar-dropdown .dropdown-menu {
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-end .navbar-dropdown .dropdown-menu li:hover {
+  background-color: #f2f2f2;
+}
+
+.navbar-end .navbar-dropdown .dropdown-menu li:active {
+  background-color: #e2e2e2;
+}
+
+/**
+
+/** Inplayer account modal
 .gkfMtI {
   background-color: #fff;
   color: #171717;
@@ -37,12 +133,10 @@ body {
   top: 70;
 }
 
-/** Inplayer account modal text **/
+/** Inplayer account modal text
 .hPwjHb {
   font-size: 1.8rem;
 }
-
-/**
 
 .mod-categories {
   padding: 0;
