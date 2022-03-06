@@ -54,11 +54,7 @@ body {
 
 .navbar-end {
   justify-content: flex-start;
-  margin-right: auto;
-}
-
-.navbar-end {
-  margin-right: auto;
+  margin-left: auto;
 }
 
 .navbar-item {
@@ -109,17 +105,29 @@ body {
   display: block;
   margin-left: auto;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 6px;
+  border-top: none;
   box-shadow: 0 0 2px #819EA6;
-  transition: all .5s ease;
-  position: relative;
+  /* transition: all .5s ease; */
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  top: calc(100% + (-4px));
+  transform: translateY(-5px);
+  transition-duration: 86ms;
+  transition-property: opacity, transform;
+  /* position: relative; */
+  position: absolute;
   font-size: 14px;
+  left: 0;
   color: #474747;
+  min-width: 100%;
   height: 100%;
   text-align: center;
   float: right;
   margin-top: 60px;
   margin-right: 40px;
+  z-index: 20;
 }
 
 .navbar-end .navbar-dropdown .select {
