@@ -2,6 +2,10 @@ body {
   background-color: #fff;
 }
 
+.top-shade {
+  background-color: #fff;
+}
+
 .video-main {
   background-color: #fff;
 }
@@ -13,6 +17,22 @@ body {
 .chron-nav__hamburger {
   visibility: hidden;
   background-color: #fff;
+}
+
+/** Inplayer account modal **/
+.gkfMtI {
+  background-color: #fff;
+  color: #171717;
+}
+
+.gEvhs {
+  bottom: unset;
+  top: 70;
+}
+
+/** Inplayer account modal text **/
+.hPwjHb {
+  font-size: 1.8rem;
 }
 
 /**
