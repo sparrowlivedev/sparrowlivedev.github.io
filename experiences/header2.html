@@ -1,0 +1,96 @@
+<head>
+  <script type="text/javascript" src="https://assets.inplayer.com/paywall/v3/paywall.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<nav id="navbar" class="navbar is-black is-spaced is-transparent" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="https://sparrowlivedev.github.io/experiences/enterprise-header-logo.png" height="100">
+    </a>
+  </div>
+  <div id="navMenu" class="navbar-menu has-background-black">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/category/videos/concerts">Home</a>
+      <a class="navbar-item" href="/category/videos/concerts">Discover</a>
+      <a class="navbar-item" href="/category/videos/family-community">For Artists</a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Partners 
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Production</a>
+          <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Venues</a>
+          <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Enterprise</a>
+        </div>
+      </div>
+
+      <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Web3</a>
+    </div>
+
+    <div class="navbar-end">
+      <a class="navbar-item" href="https://www.sparrowlive.com">Manage Subscription</a>
+      <a class="navbar-item" href="https://www.sparrowlive.com">Subscribe</a>
+      <a class="navbar-item button is-white is-outlined auth-btn auth-btn--login inplayer-paywall-login" data-login="Log In" data-logout="Log Out">Log In</a>
+
+      <div id="inplayer-2655088"></div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+
+        <div class="navbar-dropdown account-dropdown" id="dropdown">
+          <div class="select">
+            <span>My Account</span>
+            <i class="fa fa-chevron-left"></i>
+          </div>
+          <input type="hidden" name="gender">
+          <ul class="dropdown-menu">
+            <li class="inplayer-paywall-account">My Details</li>
+            <li class="inplayer-paywall-ccm">Card Details</li>
+            <li class="inplayer-paywall-logout">Logout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+  <!-- InPlayer variables:
+  Account UUID: 34df18fa-98ef-4b41-9cdc-cd3767a4802b
+  Asset ID: ?
+  -->
+
+<script type="text/javascript">
+  var paywall = new InplayerPaywall('34df18fa-98ef-4b41-9cdc-cd3767a4802b',
+    [{
+      id: 2655088,
+      options: {
+        noPreview: true
+      }
+    }], {
+      hideUserMenu: true
+    }
+  )
+
+  $('#account').hide();
+
+  paywall.on('authenticated', function() {
+    $('#account').show();
+  });
+
+  paywall.on('logout', function() {
+    location.reload();
+  });
+
+  $('.dropdown').click(function() {
+    $(this).attr('tabindex', 1).focus();
+    $(this).toggleClass('active');
+    $(this).find('.dropdown-menu').slideToggle(300);
+  });
+  $('.dropdown').focusout(function() {
+    $(this).removeClass('active');
+    $(this).find('.dropdown-menu').slideUp(300);
+  });
+
+</script>

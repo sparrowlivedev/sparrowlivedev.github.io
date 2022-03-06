@@ -65,6 +65,11 @@ body {
   padding: 0 10px 0 10px;
 }
 
+.navbar-item.has-dropdown {
+  align-items: stretch;
+  padding: 0;
+}
+
 .navbar-dropdown {
   border-radius: 6px;
   border-top: none;
@@ -76,6 +81,11 @@ body {
   transform: translateY(-5px);
   transition-duration: 86ms;
   transition-property: opacity, transform;
+  font-size: 14px;
+  left: 0;
+  min-width: 100%;
+  position: absolute;
+  z-index: 20;
 }
 
 .navbar-end .auth-button {
