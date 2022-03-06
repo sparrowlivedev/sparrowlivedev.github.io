@@ -1,6 +1,6 @@
 body {
   background-color: #fff;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -61,6 +61,23 @@ body {
   margin-right: auto;
 }
 
+.navbar-item {
+  padding: 0 10px 0 10px;
+}
+
+.navbar-dropdown {
+  border-radius: 6px;
+  border-top: none;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  top: calc(100% + (-4px));
+  transform: translateY(-5px);
+  transition-duration: 86ms;
+  transition-property: opacity, transform;
+}
+
 .navbar-end .auth-button {
   width: 130px;
   background-color: #fff;
@@ -81,11 +98,12 @@ body {
   width: 130px; /* This controls the size of the My Account menu button. */
   display: block;
   margin-left: auto;
-  background-color: #fff; /* This controls the size of the My Account menu button. (#fff is White) */                                                                                             border-radius: 5px;
+  background-color: #fff;
+  border-radius: 5px;
   box-shadow: 0 0 2px #819EA6;
   transition: all .5s ease;
   position: relative;
-  font-size: 14px; /* This controls the size of the font in the My Account menu. */
+  font-size: 14px;
   color: #474747;
   height: 100%;
   text-align: center;
