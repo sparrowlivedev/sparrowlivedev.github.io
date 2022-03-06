@@ -11,12 +11,19 @@ body {
 }
 
 .chron-nav {
+  visibility: collapse;
   background-color: #fff;
 }
 
 .chron-nav__hamburger {
   visibility: hidden;
   background-color: #fff;
+}
+
+.inplayer-paywall-login {
+  float: right;
+  margin-top: 60px;
+  margin-right: 40px;
 }
 
 /** Inplayer account modal **/
