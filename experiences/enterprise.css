@@ -27,18 +27,38 @@ body {
   padding: 1rem 2rem;
 }
 
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
 .navbar {
   z-index: 1001;
-  min-height: 3.25rem;
-  margin-bottom: 0px !important;
+  min-height: 50px;
+  margin-bottom: 20px;
   position: relative;
   border: 1px solid transparent;
   border-radius: 4px;
 }
 
 .navbar, .navbar-menu, .navbar-start, .navbar-end {
-  align-items: stretch;
+  align-items: center;
   display: flex;
+}
+
+.navbar-menu {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.navbar-end {
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.navbar-end {
+  margin-right: auto;
 }
 
 .navbar-end .auth-button {
