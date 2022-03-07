@@ -100,18 +100,128 @@ body {
   margin-right: 40px;
 }
 
+
+
+
+
+
+button {
+  width: 130px;  /* This controls the size of the Login button. */
+  background-color: #fff;  /* This controls the colour of the button. (#fff is White) */
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px; /* This controls the size of the font in the Login button. */
+  border: none;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  margin-left: auto;
+  cursor: pointer;
+  height: 100%;
+  
+}
+
+.dropdown {
+  width: 130px; /* This controls the size of the My Account menu button. */
+  display: block;
+  margin-left: auto;
+  background-color: #fff; /* This controls the size of the My Account menu button. (#fff is White) */
+  border-radius: x;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  transition: all .5s ease;
+  position: relative;
+  font-size: 14px; /* This controls the size of the font in the My Account menu. */
+  color: #474747;
+  height: 100%;
+  text-align: center;
+
+}
+
+.dropdown .select {
+  cursor: pointer;
+  display: block;
+  padding: 10px
+}
+
+.dropdown .select>i {
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  float: right;
+  line-height: 20px
+}
+
+.dropdown:hover {
+  box-shadow: 0 0 4px rgb(204, 204, 204)
+}
+
+.dropdown:active {
+  background-color: #f8f8f8
+}
+
+.dropdown.active:hover,
+.dropdown.active {
+  box-shadow: 0 0 4px rgb(204, 204, 204);
+  border-radius: 5px 5px 0 0;
+  background-color: #f8f8f8
+}
+
+.dropdown.active .select>i {
+  transform: rotate(-90deg)
+}
+
+.dropdown .dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  margin-top: 1px;
+  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  border-radius: 0 1px 5px 5px;
+  overflow: hidden;
+  display: none;
+  max-height: 144px;
+  overflow-y: auto;
+  z-index: 9
+}
+
+.dropdown .dropdown-menu li {
+  padding: 10px;
+  transition: all .2s ease-in-out;
+  cursor: pointer
+}
+
+.dropdown .dropdown-menu {
+  padding: 0;
+  list-style: none
+}
+
+.dropdown .dropdown-menu li:hover {
+  background-color: #f2f2f2
+}
+
+.dropdown .dropdown-menu li:active {
+  background-color: #e2e2e2
+}
+
+
+
+
+
+
+
+/**
 .navbar-end .acct-dropdown .dd-menu {
   width: 130px;
   margin-left: auto;
   background-color: #fff;
-  /* box-shadow: 0 0 2px #819EA6; */
-  /* transition: all .5s ease; */
+  /* box-shadow: 0 0 2px #819EA6;
+  /* transition: all .5s ease;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-5px);
   transition-duration: 86ms;
   transition-property: opacity, transform;
-  /* position: relative; */
+  /* position: relative;
   position: absolute;
   font-size: 14px;
   color: #474747;
@@ -156,6 +266,7 @@ body {
   transform: rotate(-90deg);
 }
 
+/**
 .navbar-end .acct-dropdown .dd-menu {
   position: absolute;
   background-color: #fff;
