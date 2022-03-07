@@ -100,7 +100,7 @@ body {
   margin-right: 40px;
 }
 
-.navbar-end .navbar-dropdown .dropdown-menu {
+.navbar-end .acct-dropdown .dropdown-menu {
   width: 130px; /* This controls the size of the My Account menu button. */
   margin-left: auto;
   background-color: #fff;
@@ -126,14 +126,13 @@ body {
   z-index: 20;
 }
 
-/**
-.navbar-end .navbar-dropdown .select {
+.navbar-end .acct-dropdown .select {
   cursor: pointer;
   display: block;
   padding: 10px;
 }
 
-.navbar-end .navbar-dropdown .select>i {
+.navbar-end .acct-dropdown .select>i {
   font-size: 14px;
   color: #888;
   cursor: pointer;
@@ -142,26 +141,25 @@ body {
   line-height: 20px;
 }
 
-.navbar-end .navbar-dropdown:hover {
+.navbar-end .acct-dropdown:hover {
   box-shadow: 0 0 4px rgb(204, 204, 204);
 }
 
-.navbar-end .navbar-dropdown:active {
+.navbar-end .acct-dropdown:active {
   background-color: #f8f8f8;
 }
 
-.navbar-end .navbar-dropdown.active:hover, .navbar .navbar-dropdown.active {
+.navbar-end .acct-dropdown.active:hover, .navbar .navbar-dropdown.active {
   box-shadow: 0 0 4px rgb(204, 204, 204);
   border-radius: 5px 5px 0 0;
   background-color: #f8f8f8;
 }
 
-.navbar-end .navbar-dropdown.active .select>i {
+.navbar-end .acct-dropdown.active .select>i {
   transform: rotate(-90deg);
 }
-**/
 
-.navbar-end .navbar-dropdown .dropdown-menu {
+.navbar-end .acct-dropdown .dropdown-menu {
   position: absolute;
   background-color: #fff;
   width: 100%;
@@ -176,22 +174,22 @@ body {
   z-index: 9;
 }
 
-.navbar-end .navbar-dropdown .dropdown-menu li {
+.navbar-end .acct-dropdown .dropdown-menu li {
   padding: 10px;
   transition: all .2s ease-in-out;
   cursor: pointer;
 }
 
-.navbar-end .navbar-dropdown .dropdown-menu {
+.navbar-end .acct-dropdown .dropdown-menu {
   padding: 0;
   list-style: none;
 }
 
-.navbar-end .navbar-dropdown .dropdown-menu li:hover {
+.navbar-end .acct-dropdown .dropdown-menu li:hover {
   background-color: #f2f2f2;
 }
 
-.navbar-end .navbar-dropdown .dropdown-menu li:active {
+.navbar-end .acct-dropdown .dropdown-menu li:active {
   background-color: #e2e2e2;
 }
 
