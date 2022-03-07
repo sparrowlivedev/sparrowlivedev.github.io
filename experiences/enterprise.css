@@ -119,7 +119,7 @@ button {
   
 }
 
-.dropdown {
+.acct-dropdown {
   width: 130px; /* This controls the size of the My Account menu button. */
   display: block;
   margin-left: auto;
@@ -135,13 +135,13 @@ button {
 
 }
 
-.dropdown .select {
+.acct-dropdown .select {
   cursor: pointer;
   display: block;
   padding: 10px
 }
 
-.dropdown .select>i {
+.acct-dropdown .select>i {
   font-size: 14px;
   color: #888;
   cursor: pointer;
@@ -150,56 +150,69 @@ button {
   line-height: 20px
 }
 
-.dropdown:hover {
+.acct-dropdown:hover {
   box-shadow: 0 0 4px rgb(204, 204, 204)
 }
 
-.dropdown:active {
+.acct-dropdown:active {
   background-color: #f8f8f8
 }
 
-.dropdown.active:hover,
-.dropdown.active {
+.acct-dropdown.active:hover,
+.acct-dropdown.active {
   box-shadow: 0 0 4px rgb(204, 204, 204);
   border-radius: 5px 5px 0 0;
   background-color: #f8f8f8
 }
 
-.dropdown.active .select>i {
+.acct-dropdown.active .select>i {
   transform: rotate(-90deg)
 }
 
-.dropdown .dropdown-menu {
+.navbar-end .acct-dropdown .dd-menu {
   position: absolute;
-  background-color: #fff;
+  /**width: 130px; */
   width: 100%;
-  left: 0;
-  margin-top: 1px;
+  height: 100%;
+  max-height: 144px;
+  margin-left: auto;
+  background-color: #fff;
+  /* box-shadow: 0 0 2px #819EA6; */
+  /* transition: all .5s ease; */
+  display: none;
+  pointer-events: none;
   box-shadow: 0 1px 2px rgb(204, 204, 204);
   border-radius: 0 1px 5px 5px;
+  transform: translateY(-5px);
+  transition-duration: 86ms;
+  transition-property: opacity, transform;
+  font-size: 14px;
+  color: #474747;
+  text-align: center;
+  float: right;
+  margin-top: 1px;
   overflow: hidden;
-  display: none;
-  max-height: 144px;
   overflow-y: auto;
-  z-index: 9
+  z-index: 9;
+  /* left: 0; */
 }
 
-.dropdown .dropdown-menu li {
+.acct-dropdown .dd-menu li {
   padding: 10px;
   transition: all .2s ease-in-out;
   cursor: pointer
 }
 
-.dropdown .dropdown-menu {
+.acct-dropdown .dd-menu {
   padding: 0;
   list-style: none
 }
 
-.dropdown .dropdown-menu li:hover {
+.acct-dropdown .dd-menu li:hover {
   background-color: #f2f2f2
 }
 
-.dropdown .dropdown-menu li:active {
+.acct-dropdown .dd-menu li:active {
   background-color: #e2e2e2
 }
 
@@ -210,28 +223,6 @@ button {
 
 
 /**
-.navbar-end .acct-dropdown .dd-menu {
-  width: 130px;
-  margin-left: auto;
-  background-color: #fff;
-  /* box-shadow: 0 0 2px #819EA6;
-  /* transition: all .5s ease;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-5px);
-  transition-duration: 86ms;
-  transition-property: opacity, transform;
-  /* position: relative;
-  position: absolute;
-  font-size: 14px;
-  color: #474747;
-  height: 100%;
-  text-align: center;
-  float: right;
-  margin-top: 60px;
-  margin-right: 40px;
-  z-index: 20;
-}
 
 .navbar-end .acct-dropdown .select {
   cursor: pointer;
