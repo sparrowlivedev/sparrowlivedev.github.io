@@ -100,16 +100,12 @@ body {
   margin-right: 40px;
 }
 
-.navbar-end .navbar-dropdown {
+.navbar-end .navbar-dropdown .dropdown-menu {
   width: 130px; /* This controls the size of the My Account menu button. */
-  display: block;
   margin-left: auto;
   background-color: #fff;
-  border-radius: 6px;
-  border-top: none;
   box-shadow: 0 0 2px #819EA6;
   /* transition: all .5s ease; */
-  display: block;
   opacity: 0;
   pointer-events: none;
   top: calc(100% + (-4px));
@@ -130,6 +126,7 @@ body {
   z-index: 20;
 }
 
+/**
 .navbar-end .navbar-dropdown .select {
   cursor: pointer;
   display: block;
@@ -162,6 +159,7 @@ body {
 .navbar-end .navbar-dropdown.active .select>i {
   transform: rotate(-90deg);
 }
+**/
 
 .navbar-end .navbar-dropdown .dropdown-menu {
   position: absolute;
