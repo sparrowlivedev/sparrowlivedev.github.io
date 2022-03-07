@@ -100,19 +100,20 @@ body {
   margin-right: 40px;
 }
 
+/**
 .navbar-end .acct-dropdown .dropdown-menu {
-  width: 130px; /* This controls the size of the My Account menu button. */
+  width: 130px;
   margin-left: auto;
   background-color: #fff;
   box-shadow: 0 0 2px #819EA6;
-  /* transition: all .5s ease; */
+  /* transition: all .5s ease;
   opacity: 0;
   pointer-events: none;
   top: calc(100% + (-4px));
   transform: translateY(-5px);
   transition-duration: 86ms;
   transition-property: opacity, transform;
-  /* position: relative; */
+  /* position: relative;
   position: absolute;
   font-size: 14px;
   left: 0;
@@ -192,6 +193,7 @@ body {
 .navbar-end .acct-dropdown .dropdown-menu li:active {
   background-color: #e2e2e2;
 }
+**/
 
 /**
 
