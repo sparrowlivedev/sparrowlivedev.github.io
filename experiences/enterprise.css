@@ -123,18 +123,11 @@ button {
 
 .acct-dropdown {
   width: 130px; /* This controls the size of the My Account menu button. */
-  display: block;
-  margin-left: auto;
-  background-color: #fff; /* This controls the size of the My Account menu button. (#fff is White) */
-  border-radius: x;
+  background-color: #fff;
   box-shadow: 0 0 2px rgb(204, 204, 204);
   transition: all .5s ease;
   position: relative;
-  font-size: 14px; /* This controls the size of the font in the My Account menu. */
-  color: #474747;
-  height: 100%;
   text-align: center;
-
 }
 
 .acct-dropdown .select {
@@ -175,20 +168,14 @@ button {
   position: absolute;
   display: none;
   width: 100%;
-  max-height: 144px;
-  margin-left: auto;
   background-color: #fff;
-  font-size: 14px;
-  color: #474747;
+  font-size: 16px;
   box-shadow: 0 1px 2px rgb(204, 204, 204);
   border-radius: 0 1px 5px 5px;
   transform: translateY(-5px);
   transition-duration: 86ms;
   transition-property: opacity, transform;
   text-align: center;
-  float: right;
-  margin-top: 1px;
-  z-index: 9;
 }
 
 .acct-dropdown .dd-menu li {
