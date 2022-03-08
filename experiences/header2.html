@@ -52,6 +52,8 @@
   -->
 
 <script type="text/javascript">
+  $('#account').hide();
+
   var paywall = new InplayerPaywall('34df18fa-98ef-4b41-9cdc-cd3767a4802b',
     [{
       id: 2655088,
@@ -63,13 +65,12 @@
     }
   )
 
-  $('#account').hide();
-
   paywall.on('authenticated', function() {
     $('#account').show();
   });
 
   paywall.on('logout', function() {
+    $('#account').hide();
     location.reload();
   });
 
