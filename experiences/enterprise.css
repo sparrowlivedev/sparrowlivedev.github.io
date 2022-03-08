@@ -62,6 +62,7 @@ a {
 
 .navbar-end {
   justify-content: flex-end;
+  margin-left: auto;
 }
 
 .navbar-item {
@@ -70,7 +71,7 @@ a {
   white-space: nowrap;
 }
 
-.subscribe {
+.navbar-end.subscribe {
   padding-right: 30px;
 }
 
@@ -97,34 +98,13 @@ a {
   background-color: #fff;
 }
 
-.navbar-end .auth-button {
+.navbar-end .auth-btn {
   width: 130px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 10px;
-  font-size: 14px;
-  border: none;
   box-shadow: 0 0 2px #819EA6;
-  margin-left: auto;
   cursor: pointer;
-  height: 100%;
-  float: right;
-  margin-top: 60px;
-  margin-right: 40px;
-}
-
-button {
-  width: 130px;  /* This controls the size of the Login button. */
-  background-color: #fff;  /* This controls the colour of the button. (#fff is White) */
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 14px; /* This controls the size of the font in the Login button. */
-  border: none;
-  box-shadow: 0 0 2px #819EA6;
-  margin-left: auto;
-  cursor: pointer;
-  height: 100%;
-  
 }
 
 .acct-dropdown {
