@@ -74,7 +74,7 @@ body {
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   display: block;
   opacity: 0;
-  pointer-events: none;
+  /*pointer-events: none;*/
   top: calc(100% + (-4px));
   transform: translateY(-5px);
   transition-duration: 86ms;
@@ -138,11 +138,11 @@ button {
 }
 
 .acct-dropdown .select {
-  cursor: pointer;
   display: block;
   padding: 10px
 }
 
+/* Chevron icon */
 .acct-dropdown .select>i {
   font-size: 14px;
   color: #888;
@@ -153,22 +153,22 @@ button {
 }
 
 .acct-dropdown:hover {
-  box-shadow: 0 0 4px rgb(204, 204, 204)
+  box-shadow: 0 0 4px rgb(204, 204, 204);
 }
 
 .acct-dropdown:active {
-  background-color: #f8f8f8
+  background-color: #f8f8f8;
 }
 
 .acct-dropdown.active:hover,
 .acct-dropdown.active {
   box-shadow: 0 0 4px rgb(204, 204, 204);
   border-radius: 5px 5px 0 0;
-  background-color: #f8f8f8
+  background-color: #f8f8f8;
 }
 
 .acct-dropdown.active .select>i {
-  transform: rotate(-90deg)
+  transform: rotate(-90deg);
 }
 
 .navbar-end .acct-dropdown .dd-menu {
@@ -180,7 +180,6 @@ button {
   background-color: #fff;
   font-size: 14px;
   color: #474747;
-  pointer-events: none;
   box-shadow: 0 1px 2px rgb(204, 204, 204);
   border-radius: 0 1px 5px 5px;
   transform: translateY(-5px);
@@ -195,27 +194,16 @@ button {
 .acct-dropdown .dd-menu li {
   padding: 10px;
   transition: all .2s ease-in-out;
-  cursor: pointer
-}
-
-.acct-dropdown .dd-menu {
-  padding: 0;
-  list-style: none
+  cursor: pointer;
 }
 
 .acct-dropdown .dd-menu li:hover {
-  background-color: #f2f2f2
+  background-color: #f2f2f2;
 }
 
 .acct-dropdown .dd-menu li:active {
-  background-color: #e2e2e2
+  background-color: #e2e2e2;
 }
-
-
-
-
-
-
 
 /**
 
