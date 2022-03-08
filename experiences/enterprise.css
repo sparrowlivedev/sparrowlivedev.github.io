@@ -52,6 +52,10 @@ body {
   flex-shrink: 0;
 }
 
+.navbar-brand {
+  cursor: pointer;
+}
+
 .navbar-end {
   justify-content: flex-start;
   margin-left: auto;
