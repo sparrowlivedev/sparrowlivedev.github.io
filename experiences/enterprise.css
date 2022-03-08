@@ -75,7 +75,7 @@ a:hover {
   white-space: nowrap;
 }
 
-.navbar-end.subscribe {
+.navbar-end .subscribe {
   padding-right: 30px;
 }
 
@@ -114,6 +114,7 @@ a:hover {
 
 .navbar-end .auth-btn:hover{
   box-shadow: 0 0 4px #819EA6;
+  color: #23527c;
 }
 
 .acct-dropdown {
@@ -121,6 +122,7 @@ a:hover {
   color: #819EA6;
   background-color: #fff;
   box-shadow: 0 0 2px #819EA6;
+  border-radius: 6px;
   transition: all .2s ease;
   position: relative;
   text-align: center;
@@ -145,6 +147,7 @@ a:hover {
 
 .acct-dropdown:hover {
   box-shadow: 0 0 4px #819EA6;
+  color: #23527c;
 }
 
 .acct-dropdown:active {
