@@ -5,6 +5,11 @@ body {
   line-height: 1.5;
 }
 
+a {
+  font-weight: 400;
+  color: #819EA6;
+}
+
 .top-shade {
   background-color: #fff;
 }
@@ -36,6 +41,7 @@ body {
 .navbar {
   border: 1px solid transparent;
   border-radius: 4px;
+  margin: 20px 0 20px 0;
 }
 
 .navbar, .navbar-menu, .navbar-start, .navbar-end {
@@ -50,6 +56,8 @@ body {
 
 .navbar-brand {
   cursor: pointer;
+  height: 80px;
+  padding: 0 15px 0 0;
 }
 
 .navbar-end {
