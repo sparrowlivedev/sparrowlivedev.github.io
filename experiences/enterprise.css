@@ -59,11 +59,13 @@ body {
 
 .navbar-item {
   padding: 0 10px 0 10px;
+  cursor: pointer;
 }
 
 .navbar-item.has-dropdown {
   align-items: stretch;
   padding: 0;
+  pointer-events: none;
 }
 
 .navbar-dropdown {
@@ -171,20 +173,19 @@ button {
 
 .navbar-end .acct-dropdown .dd-menu {
   position: absolute;
+  display: none;
   width: 100%;
   max-height: 144px;
   margin-left: auto;
   background-color: #fff;
-  /* box-shadow: 0 0 2px #819EA6; */
-  /* transition: all .5s ease; */
+  font-size: 14px;
+  color: #474747;
   pointer-events: none;
   box-shadow: 0 1px 2px rgb(204, 204, 204);
   border-radius: 0 1px 5px 5px;
   transform: translateY(-5px);
   transition-duration: 86ms;
   transition-property: opacity, transform;
-  font-size: 14px;
-  color: #474747;
   text-align: center;
   float: right;
   margin-top: 1px;
