@@ -61,14 +61,17 @@ a {
 }
 
 .navbar-end {
-  justify-content: flex-start;
-  margin-left: auto;
+  justify-content: flex-end;
 }
 
 .navbar-item {
   padding: 0 30px 0 30px;
   cursor: pointer;
   white-space: nowrap;
+}
+
+.subscribe {
+  padding-right: 30px;
 }
 
 .navbar-item.has-dropdown {
@@ -80,7 +83,7 @@ a {
 .navbar-dropdown {
   border-radius: 6px;
   border-top: none;
-  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  box-shadow: 0 1px 2px #819EA6;
   display: none;
   /*pointer-events: none;*/
   top: calc(100% + (-4px));
@@ -117,7 +120,7 @@ button {
   padding: 10px;
   font-size: 14px; /* This controls the size of the font in the Login button. */
   border: none;
-  box-shadow: 0 0 2px rgb(204, 204, 204);
+  box-shadow: 0 0 2px #819EA6;
   margin-left: auto;
   cursor: pointer;
   height: 100%;
@@ -126,9 +129,10 @@ button {
 
 .acct-dropdown {
   width: 130px; /* This controls the size of the My Account menu button. */
+  color: #819EA6;
   background-color: #fff;
-  box-shadow: 0 0 2px rgb(204, 204, 204);
-  transition: all .5s ease;
+  box-shadow: 0 0 2px #819EA6;
+  transition: all .2s ease;
   position: relative;
   text-align: center;
   z-index: 9;
@@ -136,7 +140,8 @@ button {
 
 .acct-dropdown .select {
   display: block;
-  padding: 10px
+  padding: 10px;
+  cursor: pointer;
 }
 
 /* Chevron icon */
@@ -150,7 +155,7 @@ button {
 }
 
 .acct-dropdown:hover {
-  box-shadow: 0 0 4px rgb(204, 204, 204);
+  box-shadow: 0 0 4px #819EA6;
 }
 
 .acct-dropdown:active {
@@ -159,7 +164,7 @@ button {
 
 .acct-dropdown.active:hover,
 .acct-dropdown.active {
-  box-shadow: 0 0 4px rgb(204, 204, 204);
+  box-shadow: 0 0 4px #819EA6;
   border-radius: 5px 5px 0 0;
   background-color: #f8f8f8;
 }
@@ -174,7 +179,7 @@ button {
   width: 100%;
   background-color: #fff;
   font-size: 16px;
-  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  box-shadow: 0 1px 2px #819EA6;
   border-radius: 6px;
   transform: translateY(-5px);
   transition-duration: 86ms;
