@@ -1,177 +1,87 @@
 <head>
-  <!-- This is the InPlayer Script. This makes the paywall work. -->
-  <script type="text/javascript" src="https://assets.inplayer.com/paywall/v3/paywall.min.js">     </script>
-  
-    <!-- These are the button and menu's visual settings. They affect how the button and menu look like. You would normally need to change these so they can reflect your website's style. -->
-    <style>
-      button {
-        width: 130px;  /* This controls the size of the Login button. */
-        background-color: #fff;  /* This controls the colour of the button. (#fff is White) */
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 14px; /* This controls the size of the font in the Login button. */
-        border: none;
-        box-shadow: 0 0 2px rgb(204, 204, 204);
-        margin-left: auto;
-        cursor: pointer;
-        height: 100%;
-        
-      }
-   
-      .dropdown {
-        width: 130px; /* This controls the size of the My Account menu button. */
-        display: block;
-        margin-left: auto;
-        background-color: #fff; /* This controls the size of the My Account menu button. (#fff is White) */
-        border-radius: 5px;
-        box-shadow: 0 0 2px rgb(204, 204, 204);
-        transition: all .5s ease;
-        position: relative;
-        font-size: 14px; /* This controls the size of the font in the My Account menu. */
-        color: #474747;
-        height: 100%;
-        text-align: center;
+  <script type="text/javascript" src="https://assets.inplayer.com/paywall/v3/paywall.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
 
-      }
-
-      .dropdown .select {
-        cursor: pointer;
-        display: block;
-        padding: 10px
-      }
-
-      .dropdown .select>i {
-        font-size: 14px;
-        color: #888;
-        cursor: pointer;
-        transition: all .3s ease-in-out;
-        float: right;
-        line-height: 20px
-      }
-
-      .dropdown:hover {
-        box-shadow: 0 0 4px rgb(204, 204, 204)
-      }
-
-      .dropdown:active {
-        background-color: #f8f8f8
-      }
-
-      .dropdown.active:hover,
-      .dropdown.active {
-        box-shadow: 0 0 4px rgb(204, 204, 204);
-        border-radius: 5px 5px 0 0;
-        background-color: #f8f8f8
-      }
-
-      .dropdown.active .select>i {
-        transform: rotate(-90deg)
-      }
-
-      .dropdown .dropdown-menu {
-        position: absolute;
-        background-color: #fff;
-        width: 100%;
-        left: 0;
-        margin-top: 1px;
-        box-shadow: 0 1px 2px rgb(204, 204, 204);
-        border-radius: 0 1px 5px 5px;
-        overflow: hidden;
-        display: none;
-        max-height: 144px;
-        overflow-y: auto;
-        z-index: 9
-      }
-
-      .dropdown .dropdown-menu li {
-        padding: 10px;
-        transition: all .2s ease-in-out;
-        cursor: pointer
-      }
-
-      .dropdown .dropdown-menu {
-        padding: 0;
-        list-style: none
-      }
-
-      .dropdown .dropdown-menu li:hover {
-        background-color: #f2f2f2
-      }
-
-      .dropdown .dropdown-menu li:active {
-        background-color: #e2e2e2
-      }
-
-    </style>
-    
-  </head>
-
-
-  <div class="navbar navbar-dark" style="background-color:#fff">
-
-      <div class="navbar-brand font-family-sans-serif" style="color:#819EA6;">
-        <a href="https://watch.sparrowlive.com/enterprise"><img src="https://sparrowlivedev.github.io/experiences/enterprise-header-logo.png" height="120px" class="d-inline-block align-top" alt=""></a>
+<nav id="navbar" class="navbar is-black is-spaced is-transparent" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/enterprise">
+      <img src="https://sparrowlivedev.github.io/experiences/enterprise-header-logo.png" height="80">
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="https://sparrowlive.com/">Home</a>
+      <a class="navbar-item" href="https://sparrowlive.com/">Discover</a>
+      <a class="navbar-item" href="https://sparrowlive.com/">For Artists</a>
+      <a class="navbar-item navbar-link">Partners</a>
+      <div class="navbar-dropdown">
+        <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Production</a>
+        <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Venues</a>
+        <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Enterprise</a>
       </div>
-
-  <!-- 
-Below, you will need to make the following changes:
-1. Change the current Asset ID (72681) with the ID of your own asset (two instances).
-2. Change the current Account UUID (c424a964-2c3f-47fc-b10e-b808efbde9e2) with your own Account UUID (one instance).
--->
-
-  <!-- This div element is the code for the My Account menu button. Put it where you wish the button to appear.-->
-    <div class="dropdown" id="account">
-      <div class="select">
-        <span>My Account</span>
-        <i class="fa fa-chevron-left"></i>
-      </div>
-      <input type="hidden" name="gender">
-      <ul class="dropdown-menu">
-        <li class="inplayer-paywall-account">My Details</li>
-        <li class="inplayer-paywall-ccm">Card Details</li>
-        <li class="inplayer-paywall-logout">Logout</li>
-      </ul>
+      <a class="navbar-item" href="https://www.sparrowlive.com" target="_blank">Web3</a>
     </div>
 
-  <!-- This line is the code for the Login button. Put it where you wish the button to appear.-->
-    <button type="button" name="button" class="button inplayer-paywall-login">Login</button>
-
-    <div id="inplayer-2655088"></div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-      var paywall = new InplayerPaywall('34df18fa-98ef-4b41-9cdc-cd3767a4802b',
-        [{
-          id: 2655088,
-          options: {
-            noPreview: true
-          }
-        }], {
-          hideUserMenu: true
-        }
-      )
-
-      $('#account').hide();
-
-      paywall.on('authenticated', function() {
-        $('#account').show();
-      });
-
-      paywall.on('logout', function() {
-        location.reload();
-      });
-
-      $('.dropdown').click(function() {
-        $(this).attr('tabindex', 1).focus();
-        $(this).toggleClass('active');
-        $(this).find('.dropdown-menu').slideToggle(300);
-      });
-      $('.dropdown').focusout(function() {
-        $(this).removeClass('active');
-        $(this).find('.dropdown-menu').slideUp(300);
-      });
-
-    </script>
+    <div class="navbar-end">
+      <a class="subscribe" href="https://www.sparrowlive.com">Subscribe</a>
+      <a class="button auth-btn auth-btn--login inplayer-paywall-login" data-login="Log In" data-logout="Log Out">Log In</a>
+      <!-- div id="inplayer-2655088"></div-->
+      <div class="navbar-link">
+        <div class="acct-dropdown" id="account">
+          <div class="select">
+            <span>My Account</span>
+            <!--i class="fa fa-chevron-left"></i-->
+          </div>
+          <input type="hidden" name="gender">
+          <ul class="dd-menu">
+            <li class="inplayer-paywall-account">My Details</li>
+            <li class="inplayer-paywall-ccm">Card Details</li>
+            <li class="inplayer-paywall-logout">Logout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
   </div>
+</nav>
+
+  <!-- InPlayer variables:
+  Account UUID: 34df18fa-98ef-4b41-9cdc-cd3767a4802b
+  Asset ID: ?
+  -->
+
+<script type="text/javascript">
+  $('#account').hide();
+
+  var paywall = new InplayerPaywall('34df18fa-98ef-4b41-9cdc-cd3767a4802b',
+    [{
+      id: 2655088,
+      options: {
+        noPreview: true
+      }
+    }], {
+      hideUserMenu: true
+    }
+  )
+
+  paywall.on('authenticated', function() {
+    $('#account').show();
+  });
+
+  paywall.on('logout', function() {
+    $('#account').hide();
+    location.reload();
+  });
+
+  $('.acct-dropdown').click(function() {
+    $(this).attr('tabindex', 1).focus();
+    $(this).toggleClass('active');
+    $(this).find('.dd-menu').slideToggle(300);
+  });
+  $('.acct-dropdown').focusout(function() {
+    $(this).removeClass('active');
+    $(this).find('.dd-menu').slideUp(300);
+  });
+
+</script>
