@@ -223,3 +223,18 @@ footer {
 .has-text-grey {
   color: #7a7a7a;
 }
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+  width: 1em;
+  background-color: transparent;
+  background-position: top left;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}
