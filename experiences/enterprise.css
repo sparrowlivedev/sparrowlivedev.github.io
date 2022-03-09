@@ -193,3 +193,33 @@ a:hover {
   background-color: #819EA6;
 }
 
+/* FOOTER */
+footer {
+  background-color: #d8e7eb;
+  padding: 40px;
+  border-top: 1px solid #819ea6;
+  display: block;
+}
+
+.columns {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.custom-footer-menu {
+  text-align: left;
+}
+
+.custom-footer-li {
+  display: inline;
+}
+
+.custom-social-icons {
+  text-align: right;
+  width: 50%;
+}
+
+.has-text-grey {
+  color: #7a7a7a;
+}
