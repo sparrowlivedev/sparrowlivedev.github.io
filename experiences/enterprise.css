@@ -217,7 +217,6 @@ footer {
 
 .custom-social-icons {
   text-align: right;
-  width: 50%;
 }
 
 .has-text-grey {
@@ -237,4 +236,13 @@ footer {
   background-position: top left;
   background-repeat: no-repeat;
   border-radius: 3px;
+}
+
+.px-3 {
+  padding: 0 25px 0 25px;
+}
+
+.custom-copyright {
+  font-size: 14px;
+  padding-left: 10px;
 }
