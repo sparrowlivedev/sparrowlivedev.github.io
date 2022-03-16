@@ -254,3 +254,19 @@ footer {
   font-size: 14px;
   padding-left: 10px;
 }
+
+/* Hide the InPlayer "Buy" button */
+.eGRqRS {
+  display: none;
+}
+
+/***** Payment modal ******/
+
+/* Hide credit card image */
+.elcwJV {
+  display: none;
+}
+
+.rccs {
+  display: none;
+}
