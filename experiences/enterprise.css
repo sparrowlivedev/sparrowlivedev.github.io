@@ -260,6 +260,11 @@ footer {
   display: none;
 }
 
+/* Hide secondary (lower) user menu */
+#inplayer-menu-content {
+  display: none !important;
+}
+
 /***** Payment modal ******/
 
 /* Hide credit card image */
@@ -270,3 +275,17 @@ footer {
 .rccs {
   display: none;
 }
+
+/* Hide "Protected by InPLayer" */
+.sc-tAExr {
+  display: none;
+}
+
+/* Hide language dropdown */
+.sc-kmQMED {
+  display: none;
+}
+.sc-dwsnSq {
+  padding-left: 20px;
+}
+
