@@ -265,6 +265,20 @@ footer {
   display: none !important;
 }
 
+/* Input boxes */
+.Prehp {
+  border: 1px solid #ccc;
+}
+.jOpKgL {
+  width: 100%;
+}
+.sc-gXRojI.gcAIco { /* Password icon */
+  display: none;
+}
+.sc-gXRojI.gcAIco { /* Email icon */
+  display: none;
+}
+
 /***** Payment modal ******/
 
 /* Hide credit card image */
