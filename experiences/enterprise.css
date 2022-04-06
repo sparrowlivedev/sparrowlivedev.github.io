@@ -266,13 +266,13 @@ footer {
 }
 
 /* Top spacing */
-.sc-dwFVFH .jfZMmW {
+.sc-dwFVFH.jfZMmW {
   margin-top: 30px;
 }
-.sc-kfPuZi .hVqZSI {
+.sc-kfPuZi.hVqZSI {
   padding: 5px 0 0 0;
 }
-.sc-gjNHFA .bPGFpQ {
+.sc-gjNHFA.bPGFpQ {
   padding: 20px 0 20px 0;
 }
 
@@ -283,14 +283,14 @@ footer {
 .jOpKgL {
   width: 100%;
 }
-.sc-gXRojI .gcAIco { /* Password icon */
-  display: none;
+.sc-gXRojI.gcAIco { /* Password icon */
+  display: none !important;
 }
-.sc-gXRojI .cuattr { /* Email icon */
-  display: none;
+.sc-gXRojI.cuattr { /* Email icon */
+  display: none !important;
 }
 .sc-cVAmsi .guMWnB { /* bottom border */
-  color: #fff;
+  background: #fff;
 }
 
 /***** Payment modal ******/
