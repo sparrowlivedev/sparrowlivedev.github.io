@@ -255,10 +255,10 @@ footer {
   padding-left: 10px;
 }
 
-/* Hide the InPlayer "Buy" button */
+/* Hide the InPlayer "Buy" button
 .eGRqRS {
   display: none;
-}
+} */
 
 /* Nav menu: login */
 .inplayer-paywall-login {
