@@ -88,7 +88,7 @@ a:hover {
 .navbar-dropdown {
   border-radius: 6px;
   border-top: none;
-  box-shadow: 0 1px 2px #819EA6;
+  box-shadow: 0 1px 2px 
   display: none;
   /*pointer-events: none;*/
   top: calc(100% + (-4px));
@@ -255,10 +255,11 @@ footer {
   padding-left: 10px;
 }
 
-/* Hide the InPlayer "Buy" button
-.eGRqRS {
-  display: none;
-} */
+/* InPlayer "Watch" button */
+.eeOZNn {
+  box-shadow: rgb(0 0 0) 1px 1px 2px;
+  background-color: #819EA6 !important;
+}
 
 /* Nav menu: login */
 .inplayer-paywall-login {
