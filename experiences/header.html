@@ -18,7 +18,8 @@
 
     <div class="navbar-end">
       <a style="display:none;" class="subscribe" href="https://meghans-dandy-site.webflow.io/">Subscribe</a>
-      <a class="button auth-btn auth-btn--login inplayer-paywall-login" data-login="Log In" data-logout="Log Out">Log In</a>
+      <a class="inplayer-paywall-login" data-login="Log In" data-logout="Log Out">Log In</a>
+      <a id="register" class="button auth-btn auth-btn--register inplayer-paywall-register">Register</a>
       <!-- div id="inplayer-2655088"></div-->
       <div class="navbar-link">
         <div class="acct-dropdown" id="account">
@@ -59,10 +60,12 @@
 
   paywall.on('authenticated', function() {
     $('#account').show();
+    $('#register').hide();
   });
 
   paywall.on('logout', function() {
     $('#account').hide();
+    $('#register').show();
     location.reload();
   });
 
@@ -74,6 +77,10 @@
   $('.acct-dropdown').focusout(function() {
     $(this).removeClass('active');
     $(this).find('.dd-menu').slideUp(300);
+  });
+
+  $('.inplayer-paywall-register').click(function() {
+    paywall.showPaywall({ registerFirst: true });
   });
 
 </script>

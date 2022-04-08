@@ -260,6 +260,12 @@ footer {
   display: none;
 }
 
+/* Nav menu: login */
+.inplayer-paywall-login {
+  cursor: pointer;
+  margin-right: 40px;
+}
+
 /* Hide secondary (lower) user menu */
 #inplayer-menu-content {
   display: none !important;
