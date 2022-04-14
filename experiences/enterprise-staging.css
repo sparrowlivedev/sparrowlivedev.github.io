@@ -1,0 +1,355 @@
+body {
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+a {
+  font-weight: 400;
+  color: #819EA6;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.top-shade {
+  background-color: #fff;
+}
+
+.video-main {
+  background-color: #fff;
+}
+
+.chron-nav {
+  display: none;
+  background-color: #fff;
+}
+
+.chron-nav__hamburger {
+  visibility: hidden;
+  background-color: #fff;
+}
+
+.is-spaced {
+  padding: 0 40px 0 40px;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.navbar {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin: 20px 0 20px 0;
+}
+
+.navbar, .navbar-menu, .navbar-start, .navbar-end {
+  align-items: center;
+  display: flex;
+}
+
+.navbar-menu {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.navbar-brand {
+  cursor: pointer;
+  height: 80px;
+  padding: 0 15px 0 0;
+}
+
+.navbar-end {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.navbar-item {
+  padding: 0 30px 0 30px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.navbar-end .subscribe {
+  padding-right: 30px;
+}
+
+.navbar-item.has-dropdown {
+  align-items: stretch;
+  padding: 0;
+  pointer-events: none;
+}
+
+.navbar-dropdown {
+  border-radius: 6px;
+  border-top: none;
+  box-shadow: 0 1px 2px 
+  display: none;
+  /*pointer-events: none;*/
+  top: calc(100% + (-4px));
+  transform: translateY(-5px);
+  transition-duration: 86ms;
+  transition-property: opacity, transform;
+  font-size: 16px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  background-color: #fff;
+}
+
+.navbar-end .auth-btn {
+  width: 130px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 0 2px #819EA6;
+  cursor: pointer;
+  text-align: center;
+}
+
+.navbar-end .auth-btn:hover{
+  box-shadow: 0 0 4px #819EA6;
+  color: #23527c;
+}
+
+.acct-dropdown {
+  width: 130px; /* This controls the size of the My Account menu button. */
+  color: #819EA6;
+  background-color: #fff;
+  box-shadow: 0 0 2px #819EA6;
+  border-radius: 6px;
+  transition: all .2s ease;
+  position: relative;
+  text-align: center;
+  z-index: 9;
+}
+
+.acct-dropdown .select {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Chevron icon */
+.acct-dropdown .select>i {
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  float: right;
+  line-height: 20px
+}
+
+.acct-dropdown:hover {
+  box-shadow: 0 0 4px #819EA6;
+  color: #23527c;
+}
+
+.acct-dropdown:active {
+  background-color: #f8f8f8;
+}
+
+.acct-dropdown.active:hover,
+.acct-dropdown.active {
+  box-shadow: 0 0 4px #819EA6;
+  border-radius: 5px 5px 0 0;
+  background-color: #f8f8f8;
+}
+
+.acct-dropdown.active .select>i {
+  transform: rotate(-90deg);
+}
+
+.navbar-end .acct-dropdown .dd-menu {
+  position: absolute;
+  display: none;
+  width: 100%;
+  background-color: #fff;
+  font-size: 16px;
+  box-shadow: 0 1px 2px #819EA6;
+  border-radius: 6px;
+  transform: translateY(-5px);
+  transition-duration: 86ms;
+  transition-property: opacity, transform;
+  text-align: center;
+}
+
+.acct-dropdown .dd-menu li {
+  padding: 10px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.acct-dropdown .dd-menu li:hover {
+  background-color: #d8e7eb;
+}
+
+.acct-dropdown .dd-menu li:active {
+  background-color: #819EA6;
+}
+
+/* FOOTER */
+footer {
+  background-color: #d8e7eb;
+  padding: 40px;
+  border-top: 1px solid #819ea6;
+  display: block;
+}
+
+.columns {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: flex;
+}
+
+.column {
+  display: block;
+  flex: none;
+  width: 50%
+}
+
+.custom-footer-menu {
+  text-align: left;
+}
+
+.custom-footer-li {
+  display: inline;
+  padding-right: 40px;
+}
+
+.custom-social-icons {
+  text-align: right;
+}
+
+.has-text-grey {
+  color: #7a7a7a;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+  width: 1em;
+  background-color: transparent;
+  background-position: top left;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}
+
+.px-3 {
+  padding: 0 25px 0 25px;
+}
+
+.custom-copyright {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+/* InPlayer "Watch" button */
+.eeOZNn {
+  box-shadow: rgb(0 0 0) 1px 1px 2px;
+  background-color: #819EA6 !important;
+}
+.eeOZNn:hover {
+  background-color: #8ab5c1 !important;
+}
+
+/* Nav menu: login */
+.inplayer-paywall-login {
+  cursor: pointer;
+  margin-right: 40px;
+}
+
+/* Hide secondary (lower) user menu */
+#inplayer-menu-content {
+  display: none !important;
+}
+
+/* Top spacing */
+.sc-dwFVFH.jfZMmW {
+  margin-top: 30px;
+}
+.sc-kfPuZi.hVqZSI {
+  padding: 5px 0 0 0;
+}
+.sc-gjNHFA.bPGFpQ {
+  padding: 20px 0 20px 0;
+}
+
+/* Input boxes */
+.Prehp {
+  border: 1px solid #ccc;
+}
+.jOpKgL {
+  width: 100%;
+}
+.sc-gXRojI.gcAIco { /* Password icon */
+  display: none !important;
+}
+.sc-gXRojI.cuattr { /* Email icon */
+  display: none !important;
+}
+.sc-cVAmsi .guMWnB { /* bottom border */
+  background: #fff;
+}
+
+/***** Payment modal ******/
+
+/* Hide credit card image */
+.elcwJV {
+  display: none;
+}
+
+.rccs {
+  display: none;
+}
+
+/* Hide "Protected by InPLayer" */
+.sc-tAExr.hUONYQ {
+  display: none;
+}
+
+/* Hide language dropdown */
+.sc-kmQMED.dlhGDd {
+  display: none;
+}
+.sc-dwsnSq.eMfBAZ {
+  padding-left: 20px;
+}
+
+/* MOBILE FRIENDLY */
+/* When the screen is less than 600 pixels wide, collapse nav bar */
+@media screen and (max-width: 600px) {
+  .navbar-start a:not(:first-child) {display: none;}
+  .navbar-end a {display: none;}
+  .navbar-link {display: none;}
+  .navbar-end a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .navbar-start.responsive {position: relative;}
+  .navbar-end.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar-start.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}

@@ -1,0 +1,89 @@
+<head>
+  <script type="text/javascript" src="https://assets.inplayer.com/paywall/v3/paywall.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<nav id="navbar" class="navbar is-black is-spaced is-transparent" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a href="/enterprise">
+      <img src="https://sparrowlivedev.github.io/experiences/enterprise-header-logo.png" height="80">
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/enterprise">Home</a>
+      <a class="navbar-item" href="https://sparrowlive.com/attend-a-performance">Discover</a>
+      <a class="navbar-item" href="https://sparrowlive.com/register-to-perform">For Artists</a>
+    </div>
+
+    <div class="navbar-end">
+      <a style="display:none;" class="subscribe" href="https://meghans-dandy-site.webflow.io/">Subscribe</a>
+      <a class="inplayer-paywall-login" data-login="Log In" data-logout="Log Out">Log In</a>
+      <a id="register" class="button auth-btn auth-btn--register inplayer-paywall-register">Register</a>
+      <!-- div id="inplayer-2655088"></div-->
+      <div class="navbar-link">
+        <div class="acct-dropdown" id="account">
+          <div class="select">
+            <span>My Account</span>
+            <!--i class="fa fa-chevron-left"></i-->
+          </div>
+          <input type="hidden" name="gender">
+          <ul class="dd-menu">
+            <li class="inplayer-paywall-account">My Details</li>
+            <li class="inplayer-paywall-ccm">Card Details</li>
+            <li class="inplayer-paywall-logout">Logout</li>
+          </ul>
+        </div>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+      </div>
+  </div>
+</nav>
+
+  <!-- InPlayer variables:
+  Account UUID: 34df18fa-98ef-4b41-9cdc-cd3767a4802b
+  Asset ID: ?
+  -->
+
+<script type="text/javascript">
+  $('#account').hide();
+  var paywall = new InplayerPaywall('34df18fa-98ef-4b41-9cdc-cd3767a4802b',
+    [{
+      id: 2655088,
+      options: {
+        noPreview: true
+      }
+    }], {
+      hideUserMenu: true
+    }
+  )
+
+  paywall.on('authenticated', function() {
+    $('#account').show();
+    $('#register').hide();
+  });
+
+  paywall.on('logout', function() {
+    $('#account').hide();
+    $('#register').show();
+    location.reload();
+  });
+
+  $('.acct-dropdown').click(function() {
+    $(this).attr('tabindex', 1).focus();
+    $(this).toggleClass('active');
+    $(this).find('.dd-menu').slideToggle(300);
+  });
+  $('.acct-dropdown').focusout(function() {
+    $(this).removeClass('active');
+    $(this).find('.dd-menu').slideUp(300);
+  });
+
+  $('.inplayer-paywall-register').click(function() {
+    paywall.showPaywall({ registerFirst: true });
+  });
+
+</script>
