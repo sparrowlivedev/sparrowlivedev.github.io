@@ -36,7 +36,7 @@
           </ul>
         </div>
       </div>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <a href="javascript:void(0);" class="icon" onclick="responsiveness()">
         <i class="fa fa-bars"></i>
       </a>
       </div>
@@ -85,5 +85,33 @@
   $('.inplayer-paywall-register').click(function() {
     paywall.showPaywall({ registerFirst: true });
   });
+
+  /* Enterprise pricing package */
+  var interval = setInterval(bindClickCallback, 200);
+  function bindClickCallback() {
+    var button = $('.eeOZNn')
+    if (button.length) {
+      button.click(() => {
+        setTimeout(() => {
+          $('.hxjtXp:has(.gLhLqP:not(:contains("Enterprise")))').remove();
+        }, 250);
+      });
+      clearInterval(interval);
+    }
+  }
+
+  // Responsive navigation
+  function responsiveness() {
+    var start = $(".navbar-start");
+    var end = $(".navbar-end");
+    toggleResponsiveness(start);
+    toggleResponsiveness(end);
+  }
+
+  function toggleResponsiveness(el) {
+    var responsiveClass = "responsive";
+    if (el.hasClass(responsiveClass)) el.removeClass(responsiveClass);
+    else el.addClass(responsiveClass);
+  }
 
 </script>
