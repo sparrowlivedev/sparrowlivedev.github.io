@@ -330,21 +330,21 @@ footer {
 /* MOBILE FRIENDLY */
 /* When the screen is less than 600 pixels wide, collapse nav bar */
 @media screen and (max-width: 600px) {
-  .navbar-start a:not(:first-child) {display: none;}
+  .navbar-start a {display: none;}
   .navbar-end a {display: none;}
   .navbar-link {display: none;}
   .navbar-end a.icon {
-    /* float: right; */
-    display: none;
+    float: right;
+    display: block;
   }
 }
 
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+/* The "responsive" class is added to the nav sections when hamburger icon is clicked.
+This class displays nav inks vertically instead of horizontally. */
 @media screen and (max-width: 600px) {
   .navbar-start.responsive {position: relative;}
   .navbar-end.responsive a.icon {
     position: absolute;
-    display: block;
     right: 0;
     top: 0;
   }
