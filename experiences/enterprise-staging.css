@@ -334,8 +334,8 @@ footer {
   .navbar-end a {display: none;}
   .navbar-link {display: none;}
   .navbar-end a.icon {
-    float: right;
-    display: block;
+    /* float: right; */
+    display: none;
   }
 }
 
@@ -344,6 +344,7 @@ footer {
   .navbar-start.responsive {position: relative;}
   .navbar-end.responsive a.icon {
     position: absolute;
+    display: block;
     right: 0;
     top: 0;
   }
