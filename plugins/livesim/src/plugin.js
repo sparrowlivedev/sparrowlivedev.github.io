@@ -8,6 +8,11 @@ const defaults = {};
 const registerPlugin = videojs.registerPlugin || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
+// URL for Brightcove's Video and Playlist APIs
+const BC_BASE_URL = "https://edge.api.brightcove.com/playback/v1/accounts/6200858053001/";
+const videoURL = "videos/${videoId}";
+const playlistURL = "playlists/${playlistId}";
+
 /**
  * Function to invoke when the player is ready.
  *
@@ -25,15 +30,14 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
 const onPlayerReady = (player, options) => {
   player.addClass('vjs-livesim');
 
+  // Display countdown overlay
   var textDisplay = document.createElement('p');
   textDisplay.className = 'vjs-text';
-
   if ('displayText' in options) {
     textDisplay.innerHTML = options.displayText;
   } else {
     textDisplay.innerHTML = "Default placeholder text";
   }
-
   player.el().appendChild(textDisplay);
 };
 
@@ -50,24 +54,25 @@ const onPlayerReady = (player, options) => {
  *           An object of options left to the plugin author to define.
  */
 
-
 const livesim = function(options) {
   this.ready(() => {
-    onPlayerReady(this, videojs.mergeOptions(defaults, options));
     var player = this;
+    console.log('player ready!', player);
+    onPlayerReady(player, videojs.mergeOptions(defaults, options));
 
     // Load video metadata
     player.on('loadstart',function(){
-      console.log('mediainfo', player.mediainfo);
-    })
+      console.log('loadstart! mediainfo: ', player.mediainfo);
+    });
 
     // Play the video in the player
     player.on('loadedmetadata', function() {
-      console.log('mediainfo again?', player.mediainfo);
+      console.log('loadedmetadata! mediainfo: ', player.mediainfo);
+      console.log('loadedmetadata! play video');
+      player.currentTime(20);
       player.play();
-    })
+    });
   });
-
 };
 
 // Register the plugin with video.js.
