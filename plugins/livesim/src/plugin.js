@@ -24,6 +24,17 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
  */
 const onPlayerReady = (player, options) => {
   player.addClass('vjs-livesim');
+
+  var textDisplay = document.createElement('p');
+  textDisplay.className = 'vjs-text';
+
+  if ('displayText' in options) {
+    textDisplay.innerHTML = options.displayText;
+  } else {
+    textDisplay.innerHTML = "Default placeholder text";
+  }
+
+  player.el().appendChild(textDisplay);
 };
 
 /**
