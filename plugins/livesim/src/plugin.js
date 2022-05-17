@@ -49,10 +49,25 @@ const onPlayerReady = (player, options) => {
  * @param    {Object} [options={}]
  *           An object of options left to the plugin author to define.
  */
+
+
 const livesim = function(options) {
   this.ready(() => {
     onPlayerReady(this, videojs.mergeOptions(defaults, options));
+    var player = this;
+
+    // Load video metadata
+    player.on('loadstart',function(){
+      console.log('mediainfo', player.mediainfo);
+    })
+
+    // Play the video in the player
+    player.on('loadedmetadata', function() {
+      console.log('mediainfo again?', player.mediainfo);
+      player.play();
+    })
   });
+
 };
 
 // Register the plugin with video.js.
