@@ -91,6 +91,7 @@ function toggleClickToPause(player, turnOn=false) {
   // Allow/disallow clicking the video player element to pause/play the video
   var val = turnOn ? "" : "none";
   player.el_.firstChild.style.pointerEvents = val;
+  console.log("toggleClickToPause", player.el_.firstChild.style);
 }
 
 function toggleBigPlayButton(player, show=false) {
