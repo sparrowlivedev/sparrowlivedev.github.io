@@ -82,14 +82,13 @@ function toggleClickToPause(player, turnOn=false) {
 }
 
 function updateLiveTime(player) {
-  console.log("UPDATING PLAYER TIME");
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
-    console.log("Timestamp: ", _pageloadVideoTime + runningTime);
-    return _pageloadVideoTime + runningTime;
+    console.log("Update player timestamp: ", _pageloadVideoTime + runningTime);
+    player.currentTime(_pageloadVideoTime + runningTime);
   } else {
     console.log("Player does not have expected liveTracker component.");
-    return _pageloadVideoTime;
+    player.currentTime(_pageloadVideoTime);
   }
 }
 
@@ -183,7 +182,6 @@ const livesim = function(options) {
         case 2:
           console.log("Stream State: LIVE");
           _pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
-          console.log("_pageloadVideoTime", _pageloadVideoTime);
 
           // Show live playback bar
           showLiveControls(player);
