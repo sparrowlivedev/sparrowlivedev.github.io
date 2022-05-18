@@ -24,9 +24,9 @@ var _livesimEnabled = false;
 var _streamState = 0;
 var _streamStart = 0;
 var _streamEnd = 0;
-var _currentTime = new Date();
+var _pageloadDateTime = new Date();
 var _streamDuration = 0;
-var _timeAtPageload = 0;
+var _pageloadVideoTime = 0;
 
 function setOptions(options) {
   if (typeof options === "object") {
@@ -80,10 +80,10 @@ function toggleClickToPause(player, turnOn=false) {
 function updateLiveTime(player) {
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
-    return _timeAtPageload + runningTime;
+    return _pageloadVideoTime + runningTime;
   } else {
     console.log("Player does not have expected liveTracker component.");
-    return _timeAtPageload;
+    return _pageloadVideoTime;
   }
 }
 
@@ -159,7 +159,7 @@ const livesim = function(options) {
         console.log("_streamStart", _streamStart);
         console.log("_streamEnd", _streamEnd);
         console.log("_streamDuration", _streamDuration);
-        setStreamState(_streamStart, _timeAtPageload, _streamEnd);
+        setStreamState(_streamStart, _pageloadDateTime, _streamEnd);
 
       } else {
         console.log("livesim not enabled");
@@ -177,8 +177,8 @@ const livesim = function(options) {
           break;
         case 2:
           console.log("Stream State: LIVE");
-          _timeAtPageload = Math.floor((_currentTime - _streamStart) / 1000); // seconds
-          console.log("_currentTimeStamp", _timeAtPageload);
+          _pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
+          console.log("_pageloadVideoTime", _pageloadVideoTime);
 
           // Show live playback bar
           showLiveControls(player);
