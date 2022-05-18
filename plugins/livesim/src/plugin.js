@@ -12,11 +12,21 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
 const BC_BASE_URL = "https://edge.api.brightcove.com/playback/v1/accounts/6200858053001/";
 const videoURL = "videos/${videoId}";
 const playlistURL = "playlists/${playlistId}";
+const STREAM_STATES = {
+  "disabled": 0,
+  "pre": 1,
+  "live": 2,
+  "post": 3,
+}
 
 var _options = {};
 var _livesimEnabled = false;
-var _startTime = 0;
+var _streamState = 0;
+var _streamStart = 0;
+var _streamEnd = 0;
 var _currentTime = new Date();
+var _streamDuration = 0;
+var _currentTimeStamp = 0;
 
 function setOptions(options) {
   if (typeof options === "object") {
@@ -27,6 +37,20 @@ function setOptions(options) {
   } else {
     console.log("Options object is not a proper Javscript object {} (JSON).");
   }
+}
+
+function setStreamState(startTime, currentTime, endTime) {
+  console.log("setStreamState");
+  // Pre
+  if (startTime < currentTime)
+    _streamState = STREAM_STATES["pre"];
+  // Live
+  else if (startTime >= currentTime && endTime < currentTime)
+    _streamState = STREAM_STATES["live"];
+  else if (endTime >= currentTime)
+    _streamState = STREAM_STATES["post"];
+  else console.log("Invalid Date set for endTime", endTime);
+  console.log("_streamState", _streamState);
 }
 
 /**
@@ -90,11 +114,49 @@ const livesim = function(options) {
       _livesimEnabled = metadata.tags && metadata.tags.includes(_options["featureTag"]);
       console.log("_livesimEnabled", _livesimEnabled);
 
+      if (_livesimEnabled) {
+        // Set video duration
+        _streamDuration = metadata.duration || 0;
+
+        // Set time and current state
+        _streamStart = new Date(metadata.customFields && (metadata.customFields.premiere_time || ""));
+        _streamEnd = new Date(_streamStart.getTime() + _streamDuration);
+        console.log("_streamDuration", _streamDuration);
+        console.log("_streamStart", _streamStart);
+        console.log("_streamEnd", _streamEnd);
+        console.log("_streamDuration", _streamDuration);
+        setStreamState(_streamStart, _currentTime, _streamEnd);
+
+      } else {
+        console.log("livesim not enabled");
+      }
+
     });
 
     // Play the video in the player
     player.on('loadedmetadata', function() {
       console.log('loadedmetadata! setup video');
+
+      switch(_streamState) {
+        case 1:
+          console.log("Stream State: PRE");
+          break;
+        case 2:
+          console.log("Stream State: LIVE");
+          _currentTimeStamp = Math.floor((_currentTime - _startTime) / 1000) / 60; // seconds
+          console.log("_currentTimeStamp", _currentTimeStamp);
+          player.currentTime(_currentTimeStamp);
+          // TODO: Hide controls, show "Live" playback indicator
+          // TODO: Continue updating currentTime until video actually plays
+          player.play();
+          break;
+        case 3:
+          console.log("Stream State: POST");
+          break;
+        default:
+          console.log("Stream State: DISABLED");
+      }
+
       player.currentTime(20);
       player.play();
     });
