@@ -59,16 +59,20 @@ function showLiveControls(player) {
   console.log("SHOW LIVE CONTROLS");
   player.duration(Infinity);
   player.addClass("vjs-live");
-  if (player.controlBar) player.controlBar.playToggle.hide();
-  else console.log("Player does not have expected controlBar.")
+  if (player.controlBar) {
+    player.controlBar.playToggle.hide();
+    player.controlBar.progressControl.hide();
+  } else console.log("Player does not have expected controlBar.")
 }
 
 function hideLiveControls(player) {
   console.log("HIDE LIVE CONTROLS");
   player.duration(_streamDuration);
   player.removeClass("vjs-live");
-  if (player.controlBar) player.controlBar.playToggle.show();
-  else console.log("Player does not have expected controlBar.")
+  if (player.controlBar) {
+    player.controlBar.playToggle.show();
+    player.controlBar.progressControl.hide();
+  } else console.log("Player does not have expected controlBar.")
 }
 
 function toggleClickToPause(player, turnOn=false) {

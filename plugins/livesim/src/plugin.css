@@ -28,6 +28,14 @@
     margin-top: 10%;
 }
 
+.vjs-next-button {
+  display: none;
+}
+
+.vjs-icon-placeholder {
+  color: red;
+}
+
 .video-js {
 
   &.vjs-livesim {
