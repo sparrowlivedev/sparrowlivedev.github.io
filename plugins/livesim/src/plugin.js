@@ -93,6 +93,11 @@ function toggleClickToPause(player, turnOn=false) {
   player.el_.firstChild.style.pointerEvents = val;
 }
 
+function toggleBigPlayButton(player, show=false) {
+  if (show) player.bigPlayButton.show();
+  else player.bigPlayButton.hide();
+}
+
 function updateLiveTime(player) {
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
@@ -175,12 +180,12 @@ const livesim = function(options) {
 
     // Play the video in the player
     player.on('loadedmetadata', function() {
-      console.log('loadedmetadata! setup video');
       var _player = this;
-
       switch(_streamState) {
         case 1:
           console.log("Stream State: PRE");
+          toggleClickToPause(_player, false);
+          toggleBigPlayButton(_player, false);
           showCountdown(_player);
           break;
         case 2:
