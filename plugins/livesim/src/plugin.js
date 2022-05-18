@@ -56,8 +56,8 @@ function showCountdown(player) {
   // Display countdown overlay
   var textDisplay = document.createElement('p');
   textDisplay.className = 'vjs-text';
-  if ("preLive" in options && "message" in options["preLive"]) {
-    textDisplay.innerHTML = options.preLive.message;
+  if ("preLive" in _options && "message" in _options["preLive"]) {
+    textDisplay.innerHTML = _options.preLive.message;
   } else {
     console.log("No preLive message provided.")
     textDisplay.innerHTML = "The performance will go live in: ";
