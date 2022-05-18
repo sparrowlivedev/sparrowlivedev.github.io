@@ -147,15 +147,17 @@ const livesim = function(options) {
   console.log(_options);
 
   this.ready(() => {
-    var player = this;
-    console.log('player ready!', player);
+    var _player = this;
+    console.log('player ready!', _player);
 
-    onPlayerReady(player, videojs.mergeOptions(defaults, options));
+    onPlayerReady(_player, videojs.mergeOptions(defaults, options));
 
     // Load video metadata
-    player.on('loadstart',function(){
-      console.log('loadstart! mediainfo: ', player.mediainfo);
-      var metadata = player.mediainfo || {};
+    _player.on('loadstart',function(){
+      console.log('loadstart! mediainfo: ', _player.mediainfo);
+      var metadata = _player.mediainfo || {};
+      toggleClickToPause(_player, false);
+      toggleBigPlayButton(_player, false);
 
       // Check for the featureTag. Without this, we don't proceed with the plugin.
       _livesimEnabled = metadata.tags && metadata.tags.includes(_options["featureTag"]);
@@ -180,8 +182,7 @@ const livesim = function(options) {
     });
 
     // Play the video in the player
-    player.on('loadedmetadata', function() {
-      var _player = this;
+    _player.on('loadedmetadata', function() {
       switch(_streamState) {
         case 1:
           console.log("Stream State: PRE");
