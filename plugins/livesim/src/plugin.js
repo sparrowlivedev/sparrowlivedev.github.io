@@ -40,7 +40,6 @@ function setOptions(options) {
 }
 
 function setStreamState(startTime, currentTime, endTime) {
-  console.log("setStreamState");
   // Pre
   if (startTime > currentTime)
     _streamState = STREAM_STATES["pre"];
@@ -52,7 +51,6 @@ function setStreamState(startTime, currentTime, endTime) {
     _streamState = STREAM_STATES["post"];
 
   else console.log("Invalid Date set for endTime", endTime);
-  console.log("_streamState", _streamState);
 }
 
 function showLiveControls(player) {
@@ -82,7 +80,7 @@ function toggleClickToPause(player, turnOn=false) {
 }
 
 function updateLiveTime(player) {
-  console.log("UPDATEING PLAYER TIME");
+  console.log("UPDATING PLAYER TIME");
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
     console.log("Timestamp: ", _pageloadVideoTime + runningTime);
@@ -164,7 +162,6 @@ const livesim = function(options) {
         console.log("_streamDuration", _streamDuration);
         console.log("_streamStart", _streamStart);
         console.log("_streamEnd", _streamEnd);
-        console.log("_pageloadDateTime", _pageloadDateTime);
         setStreamState(_streamStart, _pageloadDateTime, _streamEnd);
 
       } else {
