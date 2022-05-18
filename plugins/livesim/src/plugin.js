@@ -42,12 +42,12 @@ function setOptions(options) {
 function setStreamState(startTime, currentTime, endTime) {
   console.log("setStreamState");
   // Pre
-  if (startTime < currentTime)
+  if (startTime > currentTime)
     _streamState = STREAM_STATES["pre"];
   // Live
-  else if (startTime >= currentTime && endTime < currentTime)
+  else if (startTime <= currentTime && endTime > currentTime)
     _streamState = STREAM_STATES["live"];
-  else if (endTime >= currentTime)
+  else if (endTime <= currentTime)
     _streamState = STREAM_STATES["post"];
   else console.log("Invalid Date set for endTime", endTime);
   console.log("_streamState", _streamState);
@@ -120,7 +120,7 @@ const livesim = function(options) {
 
         // Set time and current state
         _streamStart = new Date(metadata.customFields && (metadata.customFields.premiere_time || ""));
-        _streamEnd = new Date(_streamStart.getTime() + _streamDuration);
+        _streamEnd = new Date(_streamStart.getTime() + (_streamDuration * 1000));
         console.log("_streamDuration", _streamDuration);
         console.log("_streamStart", _streamStart);
         console.log("_streamEnd", _streamEnd);
