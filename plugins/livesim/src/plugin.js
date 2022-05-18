@@ -77,13 +77,15 @@ function hideLiveControls(player) {
 
 function toggleClickToPause(player, turnOn=false) {
   // Allow/disallow clicking the video player element to pause/play the video
-  var val = turnOn ? "none" : "";
+  var val = turnOn ? "" : "none";
   player.el_.firstChild.style.pointerEvents = val;
 }
 
 function updateLiveTime(player) {
+  console.log("UPDATEING PLAYER TIME");
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
+    console.log("Timestamp: ", _pageloadVideoTime + runningTime);
     return _pageloadVideoTime + runningTime;
   } else {
     console.log("Player does not have expected liveTracker component.");

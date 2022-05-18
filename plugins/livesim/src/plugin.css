@@ -28,11 +28,11 @@
     margin-top: 10%;
 }
 
-.vjs-next-button {
+.vjs-control-bar .vjs-next-button {
   display: none;
 }
 
-.vjs-icon-placeholder {
+.vjs-seek-to-live-control.vjs-control .vjs-icon-placeholder {
   color: red;
 }
 
