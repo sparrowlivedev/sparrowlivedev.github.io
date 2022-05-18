@@ -28,9 +28,8 @@ var _pageloadDateTime = new Date();
 var _streamDuration = 0;
 var _pageloadVideoTime = 0;
 
-function setOptions(options) {
+function initOptions(options) {
   if (typeof options === "object") {
-    _options["displayText"] = options["displayText"];
     _options["preLive"] = options["preLive"];
     _options["featureTag"] = options["featureTag"];
     _options["postLive"] = options["postLive"];
@@ -39,7 +38,7 @@ function setOptions(options) {
   }
 }
 
-function setStreamState(startTime, currentTime, endTime) {
+function initStreamState(startTime, currentTime, endTime) {
   // Pre
   if (startTime > currentTime)
     _streamState = STREAM_STATES["pre"];
@@ -51,6 +50,19 @@ function setStreamState(startTime, currentTime, endTime) {
     _streamState = STREAM_STATES["post"];
 
   else console.log("Invalid Date set for endTime", endTime);
+}
+
+function showCountdown(player) {
+  // Display countdown overlay
+  var textDisplay = document.createElement('p');
+  textDisplay.className = 'vjs-text';
+  if ("preLive" in options && "message" in options["preLive"]) {
+    textDisplay.innerHTML = options.preLive.message;
+  } else {
+    console.log("No preLive message provided.")
+    textDisplay.innerHTML = "The performance will go live in: ";
+  }
+  player.el().appendChild(textDisplay);
 }
 
 function showLiveControls(player) {
@@ -108,16 +120,6 @@ function updateLiveTime(player) {
  */
 const onPlayerReady = (player, options) => {
   player.addClass('vjs-livesim');
-
-  // Display countdown overlay
-  var textDisplay = document.createElement('p');
-  textDisplay.className = 'vjs-text';
-  if ('displayText' in options) {
-    textDisplay.innerHTML = options.displayText;
-  } else {
-    textDisplay.innerHTML = "Default placeholder text";
-  }
-  player.el().appendChild(textDisplay);
 };
 
 /**
@@ -135,7 +137,7 @@ const onPlayerReady = (player, options) => {
 
 const livesim = function(options) {
 
-  setOptions(options);
+  initOptions(options);
   console.log(_options);
 
   this.ready(() => {
@@ -163,7 +165,7 @@ const livesim = function(options) {
         console.log("_streamDuration", _streamDuration);
         console.log("_streamStart", _streamStart);
         console.log("_streamEnd", _streamEnd);
-        setStreamState(_streamStart, _pageloadDateTime, _streamEnd);
+        initStreamState(_streamStart, _pageloadDateTime, _streamEnd);
 
       } else {
         console.log("livesim not enabled");
@@ -174,19 +176,21 @@ const livesim = function(options) {
     // Play the video in the player
     player.on('loadedmetadata', function() {
       console.log('loadedmetadata! setup video');
+      _player = this;
 
       switch(_streamState) {
         case 1:
           console.log("Stream State: PRE");
+          showCountdown(_player);
           break;
         case 2:
           console.log("Stream State: LIVE");
           _pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
 
           // Show live playback bar
-          showLiveControls(player);
-          updateLiveTime(player);
-          player.play();
+          showLiveControls(_player);
+          updateLiveTime(_player);
+          _player.play();
           break;
         case 3:
           console.log("Stream State: POST");
