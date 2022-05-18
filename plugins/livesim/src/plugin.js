@@ -143,7 +143,7 @@ const livesim = function(options) {
           break;
         case 2:
           console.log("Stream State: LIVE");
-          _currentTimeStamp = Math.floor((_currentTime - _streamStart) / 1000) / 60; // seconds
+          _currentTimeStamp = Math.floor((_currentTime - _streamStart) / 1000); // seconds
           console.log("_currentTimeStamp", _currentTimeStamp);
           player.currentTime(_currentTimeStamp);
           // TODO: Hide controls, show "Live" playback indicator
