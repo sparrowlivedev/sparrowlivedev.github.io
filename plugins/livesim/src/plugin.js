@@ -156,9 +156,6 @@ const livesim = function(options) {
         default:
           console.log("Stream State: DISABLED");
       }
-
-      player.currentTime(20);
-      player.play();
     });
   });
 };
