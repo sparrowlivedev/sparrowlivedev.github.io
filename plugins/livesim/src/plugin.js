@@ -26,7 +26,7 @@ var _streamStart = 0;
 var _streamEnd = 0;
 var _currentTime = new Date();
 var _streamDuration = 0;
-var _currentTimeStamp = 0;
+var _timeAtPageload = 0;
 
 function setOptions(options) {
   if (typeof options === "object") {
@@ -47,10 +47,44 @@ function setStreamState(startTime, currentTime, endTime) {
   // Live
   else if (startTime <= currentTime && endTime > currentTime)
     _streamState = STREAM_STATES["live"];
+  // Post
   else if (endTime <= currentTime)
     _streamState = STREAM_STATES["post"];
+
   else console.log("Invalid Date set for endTime", endTime);
   console.log("_streamState", _streamState);
+}
+
+function showLiveControls(player) {
+  console.log("SHOW LIVE CONTROLS");
+  player.duration(Infinity);
+  player.addClass("vjs-live");
+  if (player.controlBar) player.controlBar.playToggle.hide();
+  else console.log("Player does not have expected controlBar.")
+}
+
+function hideLiveControls(player) {
+  console.log("HIDE LIVE CONTROLS");
+  player.duration(_streamDuration);
+  player.removeClass("vjs-live");
+  if (player.controlBar) player.controlBar.playToggle.show();
+  else console.log("Player does not have expected controlBar.")
+}
+
+function toggleClickToPause(player, turnOn=false) {
+  // Allow/disallow clicking the video player element to pause/play the video
+  var val = turnOn ? "none" : "";
+  player.el_.firstChild.style.pointerEvents = val;
+}
+
+function updateLiveTime(player) {
+  if (player.liveTracker) {
+    var runningTime = player.liveTracker.pastSeekEnd_;
+    return _timeAtPageload + runningTime;
+  } else {
+    console.log("Player does not have expected liveTracker component.");
+    return _timeAtPageload;
+  }
 }
 
 /**
@@ -115,7 +149,7 @@ const livesim = function(options) {
       console.log("_livesimEnabled", _livesimEnabled);
 
       if (_livesimEnabled) {
-        // Set video duration
+        // Set stream duration
         _streamDuration = metadata.duration || 0;
 
         // Set time and current state
@@ -125,7 +159,7 @@ const livesim = function(options) {
         console.log("_streamStart", _streamStart);
         console.log("_streamEnd", _streamEnd);
         console.log("_streamDuration", _streamDuration);
-        setStreamState(_streamStart, _currentTime, _streamEnd);
+        setStreamState(_streamStart, _timeAtPageload, _streamEnd);
 
       } else {
         console.log("livesim not enabled");
@@ -143,11 +177,12 @@ const livesim = function(options) {
           break;
         case 2:
           console.log("Stream State: LIVE");
-          _currentTimeStamp = Math.floor((_currentTime - _streamStart) / 1000); // seconds
-          console.log("_currentTimeStamp", _currentTimeStamp);
-          player.currentTime(_currentTimeStamp);
-          // TODO: Hide controls, show "Live" playback indicator
-          // TODO: Continue updating currentTime until video actually plays
+          _timeAtPageload = Math.floor((_currentTime - _streamStart) / 1000); // seconds
+          console.log("_currentTimeStamp", _timeAtPageload);
+
+          // Show live playback bar
+          showLiveControls(player);
+          updateLiveTime(player);
           player.play();
           break;
         case 3:
