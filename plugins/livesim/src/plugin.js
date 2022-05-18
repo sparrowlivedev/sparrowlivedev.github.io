@@ -57,6 +57,7 @@ function showLiveControls(player) {
   console.log("SHOW LIVE CONTROLS");
   player.duration(Infinity);
   player.addClass("vjs-live");
+  toggleClickToPause(player, false);
   if (player.controlBar) {
     player.controlBar.playToggle.hide();
     player.controlBar.progressControl.hide();
@@ -67,6 +68,7 @@ function hideLiveControls(player) {
   console.log("HIDE LIVE CONTROLS");
   player.duration(_streamDuration);
   player.removeClass("vjs-live");
+  toggleClickToPause(player, true);
   if (player.controlBar) {
     player.controlBar.playToggle.show();
     player.controlBar.progressControl.hide();
