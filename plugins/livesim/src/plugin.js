@@ -158,7 +158,7 @@ const livesim = function(options) {
         console.log("_streamDuration", _streamDuration);
         console.log("_streamStart", _streamStart);
         console.log("_streamEnd", _streamEnd);
-        console.log("_streamDuration", _streamDuration);
+        console.log("_pageloadDateTime", _pageloadDateTime);
         setStreamState(_streamStart, _pageloadDateTime, _streamEnd);
 
       } else {
