@@ -176,7 +176,7 @@ const livesim = function(options) {
     // Play the video in the player
     player.on('loadedmetadata', function() {
       console.log('loadedmetadata! setup video');
-      _player = this;
+      var _player = this;
 
       switch(_streamState) {
         case 1:
