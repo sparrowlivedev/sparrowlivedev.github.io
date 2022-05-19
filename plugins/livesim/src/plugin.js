@@ -237,7 +237,6 @@ const livesim = function(options) {
           console.log("pageloadVideoTime", pageloadVideoTime);
 
           // Show live playback bar
-          showLiveControls(_player);
           updateLiveTime(_player, pageloadVideoTime);
           toggleClickToPause(_player, true);
           toggleBigPlayButton(_player, true);
@@ -248,6 +247,7 @@ const livesim = function(options) {
 
           _player.on("play", function() {
             _player.liveTracker.stopTracking();
+            showLiveControls(_player);
             toggleClickToPause(_player, false);
             toggleBigPlayButton(_player, false);
           });
