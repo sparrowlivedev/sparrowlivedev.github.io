@@ -53,7 +53,8 @@ function initStreamState(startTime, currentTime, endTime) {
 }
 
 function showCountdown(player, countdownTime) {
-  if ("preLive" in _options && "showCountdown" in _options["preLive"] && !!_options.preLive.showCountdown) {
+  if (!("preLive" in _options) || !("showCountdown" in _options["preLive"]) ||
+      ("preLive" in _options && "showCountdown" in _options["preLive"] && !_options.preLive.showCountdown)) {
     console.log("showCountdown disabled");
     return;
   }
