@@ -9,6 +9,7 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
 // URL for Brightcove's Video and Playlist APIs
+const DEBUG_MODE = false;
 const BC_BASE_URL = "https://edge.api.brightcove.com/playback/v1/accounts/6200858053001/";
 const videoURL = "videos/${videoId}";
 const playlistURL = "playlists/${playlistId}";
@@ -222,6 +223,7 @@ const livesim = function(options) {
 
     // Play the video in the player
     _player.on('loadedmetadata', function() {
+      if (DEBUG_MODE) _streamState = 2;
       switch(_streamState) {
         case 1:
           console.log("Stream State: PRE");
@@ -234,6 +236,7 @@ const livesim = function(options) {
         case 2:
           console.log("Stream State: LIVE");
           var pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
+          if (DEBUG_MODE) pageloadVideoTime = 16;
           console.log("pageloadVideoTime", pageloadVideoTime);
 
           // Show live playback bar
