@@ -232,6 +232,8 @@ const livesim = function(options) {
           // Show live playback bar
           showLiveControls(_player);
           updateLiveTime(_player, pageloadVideoTime);
+          toggleBigPlayButton(_player,true);
+
           _player.play();
           break;
         case 3:
