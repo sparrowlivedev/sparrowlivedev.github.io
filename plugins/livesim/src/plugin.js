@@ -248,7 +248,6 @@ const livesim = function(options) {
           _player.on("play", function() {
             _player.liveTracker.stopTracking();
             showLiveControls(_player);
-            toggleClickToPause(_player, false);
             toggleBigPlayButton(_player, false);
           });
 
