@@ -123,7 +123,7 @@ function toggleClickToPause(player, turnOn=false) {
   var val = turnOn ? "" : "none";
   player.el_.firstChild.style.pointerEvents = val;
   player.el_.style.pointerEvents = val;
-  console.log("toggleClickToPause", player.el_);
+  console.log("toggleClickToPause", turnOn);
 }
 
 function toggleBigPlayButton(player, show=false) {
@@ -239,15 +239,17 @@ const livesim = function(options) {
           // Show live playback bar
           showLiveControls(_player);
           updateLiveTime(_player, pageloadVideoTime);
+          toggleClickToPause(_player, true);
+          toggleBigPlayButton(_player, true);
 
           _player.on("ended", function() {
             resetForVOD(_player);
           });
 
           _player.on("play", function() {
-            console.log("play callback");
-            console.log("Stop tracking");
             _player.liveTracker.stopTracking();
+            toggleClickToPause(_player, false);
+            toggleBigPlayButton(_player, false);
           });
 
           _player.play();
