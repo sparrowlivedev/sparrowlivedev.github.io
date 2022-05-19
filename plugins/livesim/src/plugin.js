@@ -238,9 +238,7 @@ const livesim = function(options) {
 
           // Show live playback bar
           showLiveControls(_player);
-          updateLiveTime(_player, 16);
-          toggleBigPlayButton(_player,true);
-          toggleClickToPause(_player, true);
+          updateLiveTime(_player, pageloadVideoTime);
 
           _player.on("ended", function() {
             resetForVOD(_player);
