@@ -26,7 +26,6 @@ var _streamStart = 0;
 var _streamEnd = 0;
 var _pageloadDateTime = new Date();
 var _streamDuration = 0;
-var _pageloadVideoTime = 0;
 
 function initOptions(options) {
   if (typeof options === "object") {
@@ -59,7 +58,7 @@ function showCountdown(player, countdownTime) {
     return;
   }
 
-  // Display countdown overlay
+  // Build countdown overlay
   var countdownOverlay = document.createElement('div');
   countdownOverlay.className = 'vjs-countdown-overlay';
 
@@ -76,6 +75,8 @@ function showCountdown(player, countdownTime) {
     console.log("No preLive message provided.")
     countdownLabel.innerHTML = "The performance will go live in the future.";
   }
+  
+  // Display countdown overaly
   countdownOverlay.appendChild(countdownLabel);
   countdownOverlay.appendChild(countdownValue);
   player.el().appendChild(countdownOverlay);
@@ -130,14 +131,14 @@ function toggleBigPlayButton(player, show=false) {
   else player.bigPlayButton.hide();
 }
 
-function updateLiveTime(player) {
+function updateLiveTime(player, videoTimeStamp) {
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
-    console.log("Update player timestamp: ", _pageloadVideoTime + runningTime);
-    player.currentTime(_pageloadVideoTime + runningTime);
+    console.log("Update player timestamp: ", videoTimeStamp + runningTime);
+    player.currentTime(videoTimeStamp + runningTime);
   } else {
     console.log("Player does not have expected liveTracker component.");
-    player.currentTime(_pageloadVideoTime);
+    player.currentTime(videoTimeStamp);
   }
 }
 
@@ -225,11 +226,12 @@ const livesim = function(options) {
           break;
         case 2:
           console.log("Stream State: LIVE");
-          _pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
+          pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
+          console.log("pageloadVideoTime", pageloadVideoTime);
 
           // Show live playback bar
           showLiveControls(_player);
-          updateLiveTime(_player);
+          updateLiveTime(_player, pageloadVideoTime);
           _player.play();
           break;
         case 3:
