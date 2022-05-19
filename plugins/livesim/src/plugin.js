@@ -142,6 +142,13 @@ function updateLiveTime(player, videoTimeStamp) {
   }
 }
 
+function resetForVOD(player) {
+  console.log("Stream ended! Resetting for VOD");
+  hideLiveControls(player);
+  toggleBigPlayButton(player, true);
+  player.currentTime(0);
+}
+
 /**
  * Function to invoke when the player is ready.
  *
@@ -196,10 +203,10 @@ const livesim = function(options) {
       console.log("_livesimEnabled", _livesimEnabled);
 
       if (_livesimEnabled) {
-        // Set stream duration
+        // set stream duration
         _streamDuration = metadata.duration || 0;
 
-        // Set time and current state
+        // set time and current state
         _streamStart = new Date(metadata.customFields && (metadata.customFields.premiere_time || ""));
         _streamEnd = new Date(_streamStart.getTime() + (_streamDuration * 1000));
         console.log("_streamDuration", _streamDuration);
@@ -226,18 +233,31 @@ const livesim = function(options) {
           break;
         case 2:
           console.log("Stream State: LIVE");
-          pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
+          var pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
           console.log("pageloadVideoTime", pageloadVideoTime);
 
           // Show live playback bar
           showLiveControls(_player);
-          updateLiveTime(_player, pageloadVideoTime);
+          updateLiveTime(_player, 16);
           toggleBigPlayButton(_player,true);
+          toggleClickToPause(_player, true);
+
+          _player.on("ended", function() {
+            resetForVOD(_player);
+          });
+
+          _player.on("play", function() {
+            console.log("play callback");
+            console.log("Stop tracking");
+            _player.liveTracker.stopTracking();
+          });
 
           _player.play();
           break;
         case 3:
           console.log("Stream State: POST");
+          toggleClickToPause(_player, true);
+          toggleBigPlayButton(_player, true);
           break;
         default:
           console.log("Stream State: DISABLED");
