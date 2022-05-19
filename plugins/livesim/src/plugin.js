@@ -119,11 +119,17 @@ function hideLiveControls(player) {
   } else console.log("Player does not have expected controlBar.")
 }
 
+function toggleHoverToControl(player, turnOn=false) {
+  // Allow/disallow hovering the video player element to show controls
+  var val = turnOn ? "" : "none";
+  player.el_.style.pointerEvents = val;
+  console.log("toggleHoverToControl", turnOn);
+}
+
 function toggleClickToPause(player, turnOn=false) {
   // Allow/disallow clicking the video player element to pause/play the video
   var val = turnOn ? "" : "none";
   player.el_.firstChild.style.pointerEvents = val;
-  player.el_.style.pointerEvents = val;
   console.log("toggleClickToPause", turnOn);
 }
 
@@ -197,6 +203,7 @@ const livesim = function(options) {
       console.log('loadstart! mediainfo: ', _player.mediainfo);
       var metadata = _player.mediainfo || {};
       toggleClickToPause(_player, false);
+      toggleHoverToControl(_player, false);
       toggleBigPlayButton(_player, false);
 
       // Check for the featureTag. Without this, we don't proceed with the plugin.
@@ -228,6 +235,7 @@ const livesim = function(options) {
         case 1:
           console.log("Stream State: PRE");
           toggleClickToPause(_player, false);
+          toggleHoverToControl(_player, false);
           toggleBigPlayButton(_player, false);
 
           var timeTilLive =  (_streamStart.getTime() - _pageloadDateTime.getTime()) / 1000; // seconds
@@ -241,7 +249,7 @@ const livesim = function(options) {
 
           // Show live playback bar
           updateLiveTime(_player, pageloadVideoTime);
-          toggleClickToPause(_player, true);
+          toggleHoverToControl(_player, true);
           toggleBigPlayButton(_player, true);
 
           _player.on("ended", function() {
