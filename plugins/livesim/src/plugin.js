@@ -52,17 +52,45 @@ function initStreamState(startTime, currentTime, endTime) {
   else console.log("Invalid Date set for endTime", endTime);
 }
 
-function showCountdown(player) {
+function showCountdown(player, countdownTime) {
+  if ("preLive" in _options && "showCountdown" in _options["preLive"] && !!_options.preLive.showCountdown) {
+    console.log("showCountdown disabled");
+    return;
+  }
+
   // Display countdown overlay
-  var textDisplay = document.createElement('p');
-  textDisplay.className = 'vjs-text';
+  var countdownOverlay = document.createElement('div');
+  countdownOverlay.className = 'vjs-countdown-overlay';
+
+  var countdownLabel = document.createElement('div');
+  countdownLabel.className = 'vjs-countdown-label';
+
+  var countdownValue = document.createElement('div');
+  countdownValue.className = 'vjs-countdown-value';
+
   if ("preLive" in _options && "message" in _options["preLive"]) {
-    textDisplay.innerHTML = _options.preLive.message;
+    countdownLabel.innerHTML = _options.preLive.message;
+    countdownValue.innerHTML = formatCountdownString(countdownTime);
   } else {
     console.log("No preLive message provided.")
-    textDisplay.innerHTML = "The performance will go live in: ";
+    countdownLabel.innerHTML = "The performance will go live in the future.";
   }
-  player.el().appendChild(textDisplay);
+  countdownOverlay.appendChild(countdownLabel, countdownValue);
+  player.el().appendChild(countdownOverlay);
+}
+
+function formatCountdownString(seconds) {
+  seconds = Number(seconds);
+  var d = Math.floor(seconds / (3600*24));
+  var h = Math.floor(seconds % (3600*24) / 3600);
+  var m = Math.floor(seconds % 3600 / 60);
+  var s = Math.floor(seconds % 60);
+  
+  var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+  var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+  var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+  var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+  return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
 function showLiveControls(player) {
@@ -189,7 +217,9 @@ const livesim = function(options) {
           console.log("Stream State: PRE");
           toggleClickToPause(_player, false);
           toggleBigPlayButton(_player, false);
-          showCountdown(_player);
+
+          var timeTilLive =  (_streamStart.getTime() - _pageloadDateTime.getTime()) / 1000; // seconds
+          showCountdown(_player, timeTilLive);
           break;
         case 2:
           console.log("Stream State: LIVE");
