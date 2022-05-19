@@ -17,15 +17,20 @@
   --font-size: 7;
 }
 
-.vjs-text {
-    font-size: 36px;
-    color: white;
-    opacity: 100%;
-    background-color: #333;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    margin-top: 10%;
+.vjs-countdown-overlay {
+  position: absolute;
+  color: white;
+  background-color: #333;
+  text-align: center;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.vjs-countdown-label {
+  font-size: 36px;
+}
+
+.vjs-countdown-value {
 }
 
 .vjs-control-bar .vjs-next-button {

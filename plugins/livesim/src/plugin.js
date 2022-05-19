@@ -69,14 +69,15 @@ function showCountdown(player, countdownTime) {
   var countdownValue = document.createElement('div');
   countdownValue.className = 'vjs-countdown-value';
 
-  if ("preLive" in _options && "message" in _options["preLive"]) {
+  if ("message" in _options.preLive) {
     countdownLabel.innerHTML = _options.preLive.message;
     countdownValue.innerHTML = formatCountdownString(countdownTime);
   } else {
     console.log("No preLive message provided.")
     countdownLabel.innerHTML = "The performance will go live in the future.";
   }
-  countdownOverlay.appendChild(countdownLabel, countdownValue);
+  countdownOverlay.appendChild(countdownLabel);
+  countdownOverlay.appendChild(countdownValue);
   player.el().appendChild(countdownOverlay);
 }
 
