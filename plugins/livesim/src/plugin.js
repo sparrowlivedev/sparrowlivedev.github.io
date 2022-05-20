@@ -9,7 +9,7 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
 // URL for Brightcove's Video and Playlist APIs
-const DEBUG_MODE = false;
+const DEBUG_MODE = true;
 const BC_BASE_URL = "https://edge.api.brightcove.com/playback/v1/accounts/6200858053001/";
 const videoURL = "videos/${videoId}";
 const playlistURL = "playlists/${playlistId}";
@@ -99,7 +99,6 @@ function formatCountdownString(seconds) {
 
 function showLiveControls(player) {
   console.log("SHOW LIVE CONTROLS");
-  player.duration(Infinity);
   player.addClass("vjs-live");
   toggleClickToPause(player, false);
   if (player.controlBar) {
@@ -136,7 +135,7 @@ function toggleClickToPause(player, turnOn=false) {
 function toggleBigPlayButton(player, show=false) {
   if (show) player.bigPlayButton.show();
   else player.bigPlayButton.hide();
-  console.log("toggleBigPlayButton", turnOn);
+  console.log("toggleBigPlayButton", show);
 }
 
 function updateLiveTime(player, videoTimeStamp) {
@@ -244,18 +243,14 @@ const livesim = function(options) {
           break;
         case 2:
           console.log("Stream State: LIVE");
+          _player.duration(Infinity);
+
           var pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
           if (DEBUG_MODE) pageloadVideoTime = 16;
           console.log("pageloadVideoTime", pageloadVideoTime);
 
-          // Show live playback bar
-          updateLiveTime(_player, pageloadVideoTime);
           toggleHoverToControl(_player, true);
           toggleBigPlayButton(_player, true);
-
-          _player.on("ended", function() {
-            resetForVOD(_player);
-          });
 
           _player.on("play", function() {
             console.log("Player playing");
@@ -263,6 +258,10 @@ const livesim = function(options) {
             _player.liveTracker.stopTracking();
             showLiveControls(_player);
             toggleBigPlayButton(_player, false);
+          });
+
+          _player.on("ended", function() {
+            resetForVOD(_player);
           });
 
           _player.play();
