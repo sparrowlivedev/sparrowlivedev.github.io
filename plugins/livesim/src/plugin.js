@@ -136,6 +136,7 @@ function toggleClickToPause(player, turnOn=false) {
 function toggleBigPlayButton(player, show=false) {
   if (show) player.bigPlayButton.show();
   else player.bigPlayButton.hide();
+  console.log("toggleBigPlayButton", turnOn);
 }
 
 function updateLiveTime(player, videoTimeStamp) {
@@ -257,6 +258,7 @@ const livesim = function(options) {
           });
 
           _player.on("play", function() {
+            console.log("Player playing");
             _player.liveTracker.stopTracking();
             showLiveControls(_player);
             toggleBigPlayButton(_player, false);
