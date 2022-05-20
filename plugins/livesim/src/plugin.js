@@ -194,13 +194,11 @@ const livesim = function(options) {
 
   this.ready(() => {
     var _player = this;
-    console.log('player ready!', _player);
 
     onPlayerReady(_player, videojs.mergeOptions(defaults, options));
 
     // Load video metadata
     _player.on('loadstart',function(){
-      console.log('loadstart! mediainfo: ', _player.mediainfo);
       var metadata = _player.mediainfo || {};
       toggleClickToPause(_player, false);
       toggleHoverToControl(_player, false);
@@ -217,9 +215,6 @@ const livesim = function(options) {
         // set time and current state
         _streamStart = new Date(metadata.customFields && (metadata.customFields.premiere_time || ""));
         _streamEnd = new Date(_streamStart.getTime() + (_streamDuration * 1000));
-        console.log("_streamDuration", _streamDuration);
-        console.log("_streamStart", _streamStart);
-        console.log("_streamEnd", _streamEnd);
         initStreamState(_streamStart, _pageloadDateTime, _streamEnd);
 
       } else {
@@ -247,7 +242,6 @@ const livesim = function(options) {
 
           var pageloadVideoTime = (_pageloadDateTime - _streamStart) / 1000; // seconds
           if (DEBUG_MODE) pageloadVideoTime = 16;
-          console.log("pageloadVideoTime", pageloadVideoTime);
 
           toggleHoverToControl(_player, true);
           toggleBigPlayButton(_player, true);
