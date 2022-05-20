@@ -245,7 +245,7 @@ const livesim = function(options) {
           console.log("Stream State: LIVE");
           _player.duration(Infinity);
 
-          var pageloadVideoTime = Math.floor((_pageloadDateTime - _streamStart) / 1000); // seconds
+          var pageloadVideoTime = (_pageloadDateTime - _streamStart) / 1000; // seconds
           if (DEBUG_MODE) pageloadVideoTime = 16;
           console.log("pageloadVideoTime", pageloadVideoTime);
 
