@@ -259,6 +259,7 @@ const livesim = function(options) {
 
           _player.on("play", function() {
             console.log("Player playing");
+            updateLiveTime(_player, pageloadVideoTime);
             _player.liveTracker.stopTracking();
             showLiveControls(_player);
             toggleBigPlayButton(_player, false);
