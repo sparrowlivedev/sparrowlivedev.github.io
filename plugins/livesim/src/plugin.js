@@ -33,6 +33,8 @@ function initOptions(options) {
     _options["preLive"] = options["preLive"];
     _options["featureTag"] = options["featureTag"];
     _options["postLive"] = options["postLive"];
+  } else if (DEBUG_MODE) {
+    _options["preLive"] = { "message": "Live in: ", "showCountdown": 1 };
   } else {
     console.log("Options object is not a proper Javscript object {} (JSON).");
   }
@@ -71,7 +73,19 @@ function showCountdown(player, countdownTime) {
 
   if ("message" in _options.preLive) {
     countdownLabel.innerHTML = _options.preLive.message;
-    countdownValue.innerHTML = formatCountdownString(countdownTime);
+    //countdownValue.innerHTML = formatCountdownString(countdownTime);
+
+    countdownTime
+    var intId = setInterval(function() {
+      countdownTime--;
+      if (countdownTime <= 0) {
+        clearInterval(intId);
+        player.el().removeChild(player.el().lastChild);
+        livestreamVideo(player);
+      } else {
+        countdownValue.innerHTML = formatCountdownString(countdownTime);
+      }
+    }, 1000);
   } else {
     console.log("No preLive message provided.")
     countdownLabel.innerHTML = "The performance will go live in the future.";
@@ -81,6 +95,8 @@ function showCountdown(player, countdownTime) {
   countdownOverlay.appendChild(countdownLabel);
   countdownOverlay.appendChild(countdownValue);
   player.el().appendChild(countdownOverlay);
+
+  // Update countdown every second
 }
 
 function formatCountdownString(seconds) {
@@ -90,10 +106,10 @@ function formatCountdownString(seconds) {
   var m = Math.floor(seconds % 3600 / 60);
   var s = Math.floor(seconds % 60);
   
-  var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
-  var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-  var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
-  var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+  var dDisplay = d > 0 ? d + (d == 1 ? "  day  " : "  days  ") : "";
+  var hDisplay = (d > 0 || h > 0) ? h + (h == 1 ? "  hour  " : "  hours  ") : "";
+  var mDisplay = ((d + h > 0) || m > 0) ? m + (m == 1 ? "  minute  " : "  minutes  ") : "";
+  var sDisplay = ((d + h + m > 0) || s >= 0) ? s + (s == 1 ? "  second" : "  seconds") : "";
   return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
@@ -141,7 +157,6 @@ function toggleBigPlayButton(player, show=false) {
 function updateLiveTime(player, videoTimeStamp) {
   if (player.liveTracker) {
     var runningTime = player.liveTracker.pastSeekEnd_;
-    console.log("Update player timestamp: ", videoTimeStamp + runningTime);
     player.currentTime(videoTimeStamp + runningTime);
   } else {
     console.log("Player does not have expected liveTracker component.");
@@ -154,6 +169,30 @@ function resetForVOD(player) {
   hideLiveControls(player);
   toggleBigPlayButton(player, true);
   player.currentTime(0);
+}
+
+function livestreamVideo(player) {
+  console.log("Stream State: LIVE");
+  player.duration(Infinity);
+
+  var pageloadVideoTime = (_pageloadDateTime - _streamStart) / 1000; // seconds
+  if (DEBUG_MODE) pageloadVideoTime = 16;
+
+  toggleHoverToControl(player, true);
+  toggleBigPlayButton(player, true);
+
+  player.on("play", function() {
+    updateLiveTime(player, pageloadVideoTime);
+    player.liveTracker.stopTracking();
+    showLiveControls(player);
+    toggleBigPlayButton(player, false);
+  });
+
+  player.on("ended", function() {
+    resetForVOD(player);
+  });
+
+  player.play();
 }
 
 /**
@@ -208,12 +247,18 @@ const livesim = function(options) {
       _livesimEnabled = metadata.tags && metadata.tags.includes(_options["featureTag"]);
       console.log("_livesimEnabled", _livesimEnabled);
 
-      if (_livesimEnabled) {
+      if (_livesimEnabled || DEBUG_MODE) {
         // set stream duration
         _streamDuration = metadata.duration || 0;
 
         // set time and current state
         _streamStart = new Date(metadata.customFields && (metadata.customFields.premiere_time || ""));
+        if (DEBUG_MODE) {
+          console.log("INIT DATES");
+          _streamStart = new Date(_pageloadDateTime.getTime() + 3000);
+          _streamDuration = 120;
+          console.log("_streamStart", _streamStart);
+        }
         _streamEnd = new Date(_streamStart.getTime() + (_streamDuration * 1000));
         initStreamState(_streamStart, _pageloadDateTime, _streamEnd);
 
@@ -225,7 +270,7 @@ const livesim = function(options) {
 
     // Play the video in the player
     _player.on('loadedmetadata', function() {
-      if (DEBUG_MODE) _streamState = 2;
+      if (DEBUG_MODE) _streamState = 1;
       switch(_streamState) {
         case 1:
           console.log("Stream State: PRE");
@@ -233,33 +278,12 @@ const livesim = function(options) {
           toggleHoverToControl(_player, false);
           toggleBigPlayButton(_player, false);
 
-          var timeTilLive =  (_streamStart.getTime() - _pageloadDateTime.getTime()) / 1000; // seconds
+          var timeTilLive =  (_streamStart - _pageloadDateTime.getTime()) / 1000; // seconds
+          if (DEBUG_MODE) console.log("showCountdown w ", timeTilLive);
           showCountdown(_player, timeTilLive);
           break;
         case 2:
-          console.log("Stream State: LIVE");
-          _player.duration(Infinity);
-
-          var pageloadVideoTime = (_pageloadDateTime - _streamStart) / 1000; // seconds
-          if (DEBUG_MODE) pageloadVideoTime = 16;
-
-          toggleHoverToControl(_player, true);
-          toggleBigPlayButton(_player, true);
-
-          _player.on("play", function() {
-            console.log("Player playing");
-            updateLiveTime(_player, pageloadVideoTime);
-            _player.liveTracker.stopTracking();
-            showLiveControls(_player);
-            toggleBigPlayButton(_player, false);
-          });
-
-          _player.on("ended", function() {
-            resetForVOD(_player);
-          });
-
-          _player.play();
-          break;
+          livestreamVideo(_player);
         case 3:
           console.log("Stream State: POST");
           toggleClickToPause(_player, true);
