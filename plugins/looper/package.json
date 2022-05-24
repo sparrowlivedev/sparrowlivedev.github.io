@@ -14,7 +14,6 @@
     "build-test": "cross-env-shell TEST_BUNDLE_ONLY=1 'npm run build'",
     "build:js": "rollup -c scripts/rollup.config.js",
     "clean": "shx rm -rf ./dist ./test/dist ./cjs ./es && shx mkdir -p ./dist ./test/dist ./cjs ./es",
-    "lint": "vjsstandard",
     "server": "karma start scripts/karma.conf.js --singleRun=false --auto-watch",
     "start": "npm-run-all -p server watch",
     "test": "npm-run-all lint build-test && karma start scripts/karma.conf.js",
@@ -58,8 +57,6 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
     }
   },
   "lint-staged": {
