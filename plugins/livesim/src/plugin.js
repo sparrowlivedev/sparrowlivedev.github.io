@@ -9,7 +9,7 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
 // URL for Brightcove's Video and Playlist APIs
-const DEBUG_MODE = false;
+const DEBUG_MODE = true;
 const BC_BASE_URL = "https://edge.api.brightcove.com/playback/v1/accounts/6200858053001/";
 const videoURL = "videos/${videoId}";
 const playlistURL = "playlists/${playlistId}";
@@ -21,6 +21,7 @@ const STREAM_STATES = {
 }
 
 var _options = {};
+var _first_run = true;
 var _livesimEnabled = false;
 var _streamState = 0;
 var _streamStart = 0;
@@ -41,6 +42,7 @@ function initOptions(options) {
 }
 
 function initStreamState(startTime, currentTime, endTime) {
+  if (DEBUG_MODE) return _streamState;
   // Pre
   if (startTime > currentTime)
     _streamState = STREAM_STATES["pre"];
@@ -72,7 +74,6 @@ function showCountdown(player, countdownTime) {
   countdownValue.className = 'vjs-countdown-value';
 
   if ("message" in _options.preLive) {
-    console.log(_options.preLive.message);
     countdownLabel.innerHTML = _options.preLive.message;
 
     var intId = setInterval(function() {
@@ -97,7 +98,6 @@ function showCountdown(player, countdownTime) {
 }
 
 function formatCountdownString(seconds) {
-  console.log("formatCountdownString", seconds);
   seconds = Number(seconds);
   var d = Math.floor(seconds / (3600*24));
   var h = Math.floor(seconds % (3600*24) / 3600);
@@ -112,7 +112,6 @@ function formatCountdownString(seconds) {
 }
 
 function showLiveControls(player) {
-  console.log("SHOW LIVE CONTROLS");
   player.addClass("vjs-live");
   toggleClickToPause(player, false);
   if (player.controlBar) {
@@ -122,7 +121,6 @@ function showLiveControls(player) {
 }
 
 function hideLiveControls(player) {
-  console.log("HIDE LIVE CONTROLS");
   player.duration(_streamDuration);
   player.removeClass("vjs-live");
   toggleClickToPause(player, true);
@@ -136,20 +134,17 @@ function toggleHoverToControl(player, turnOn=false) {
   // Allow/disallow hovering the video player element to show controls
   var val = turnOn ? "" : "none";
   player.el_.style.pointerEvents = val;
-  console.log("toggleHoverToControl", turnOn);
 }
 
 function toggleClickToPause(player, turnOn=false) {
   // Allow/disallow clicking the video player element to pause/play the video
   var val = turnOn ? "" : "none";
   player.el_.firstChild.style.pointerEvents = val;
-  console.log("toggleClickToPause", turnOn);
 }
 
 function toggleBigPlayButton(player, show=false) {
   if (show) player.bigPlayButton.show();
   else player.bigPlayButton.hide();
-  console.log("toggleBigPlayButton", show);
 }
 
 function updateLiveTime(player, videoTimeStamp) {
@@ -163,14 +158,12 @@ function updateLiveTime(player, videoTimeStamp) {
 }
 
 function resetForVOD(player) {
+  _streamState = 3;
   console.log("Stream ended! Resetting for VOD");
-  hideLiveControls(player);
-  toggleBigPlayButton(player, true);
-  player.currentTime(0);
+  player.load();
 }
 
 function livestreamVideo(player) {
-  console.log("Stream State: LIVE");
   player.duration(Infinity);
 
   var pageloadVideoTime = (_pageloadDateTime - _streamStart) / 1000; // seconds
@@ -180,6 +173,7 @@ function livestreamVideo(player) {
   toggleBigPlayButton(player, true);
 
   player.on("play", function() {
+    if (_streamState != 2) return; // Only do the following when we're in the LIVE state
     updateLiveTime(player, pageloadVideoTime);
     player.liveTracker.stopTracking();
     showLiveControls(player);
@@ -187,10 +181,38 @@ function livestreamVideo(player) {
   });
 
   player.on("ended", function() {
+    if (_streamState != 2) return; // Only do the following when we're in the LIVE state
     resetForVOD(player);
   });
 
   player.play();
+}
+
+function switchStreamState(player, state) {
+  switch(state) {
+    case 1:
+      console.log("Stream State: PRE");
+      toggleClickToPause(player, false);
+      toggleHoverToControl(player, false);
+      toggleBigPlayButton(player, false);
+
+      var timeTilLive =  (_streamStart - _pageloadDateTime.getTime()) / 1000; // seconds
+      if (DEBUG_MODE) console.log("showCountdown", timeTilLive);
+      showCountdown(player, timeTilLive);
+      break;
+    case 2:
+      console.log("Stream State: LIVE");
+      livestreamVideo(player);
+      break;
+    case 3:
+      console.log("Stream State: POST");
+      toggleClickToPause(player, true);
+      toggleHoverToControl(player, true)
+      toggleBigPlayButton(player, true);
+      break;
+    default:
+      console.log("Stream State: DISABLED");
+  }
 }
 
 /**
@@ -227,7 +249,6 @@ const onPlayerReady = (player, options) => {
 const livesim = function(options) {
 
   initOptions(options);
-  console.log(_options);
 
   this.ready(() => {
     var _player = this;
@@ -235,7 +256,7 @@ const livesim = function(options) {
     onPlayerReady(_player, videojs.mergeOptions(defaults, options));
 
     // Load video metadata
-    _player.on('loadstart',function(){
+    _player.on('loadstart',function() {
       var metadata = _player.mediainfo || {};
       toggleClickToPause(_player, false);
       toggleHoverToControl(_player, false);
@@ -243,7 +264,6 @@ const livesim = function(options) {
 
       // Check for the featureTag. Without this, we don't proceed with the plugin.
       _livesimEnabled = metadata.tags && metadata.tags.includes(_options["featureTag"]);
-      console.log("_livesimEnabled", _livesimEnabled);
 
       if (_livesimEnabled || DEBUG_MODE) {
         // set stream duration
@@ -252,14 +272,11 @@ const livesim = function(options) {
         // set time and current state
         _streamStart = new Date(metadata.customFields && (metadata.customFields.premiere_time || ""));
         if (DEBUG_MODE) {
-          console.log("INIT DATES");
           _streamStart = new Date(_pageloadDateTime.getTime() + 3000);
           _streamDuration = 120;
-          console.log("_streamStart", _streamStart);
         }
         _streamEnd = new Date(_streamStart.getTime() + (_streamDuration * 1000));
         initStreamState(_streamStart, _pageloadDateTime, _streamEnd);
-
       } else {
         console.log("livesim not enabled");
       }
@@ -268,28 +285,9 @@ const livesim = function(options) {
 
     // Play the video in the player
     _player.on('loadedmetadata', function() {
-      if (DEBUG_MODE) _streamState = 1;
-      switch(_streamState) {
-        case 1:
-          console.log("Stream State: PRE");
-          toggleClickToPause(_player, false);
-          toggleHoverToControl(_player, false);
-          toggleBigPlayButton(_player, false);
-
-          var timeTilLive =  (_streamStart - _pageloadDateTime.getTime()) / 1000; // seconds
-          if (DEBUG_MODE) console.log("showCountdown", timeTilLive);
-          showCountdown(_player, timeTilLive);
-          break;
-        case 2:
-          livestreamVideo(_player);
-        case 3:
-          console.log("Stream State: POST");
-          toggleClickToPause(_player, true);
-          toggleBigPlayButton(_player, true);
-          break;
-        default:
-          console.log("Stream State: DISABLED");
-      }
+      if (DEBUG_MODE && _first_run) _streamState = 2;
+      switchStreamState(_player, _streamState);
+      _first_run = false;
     });
   });
 };
