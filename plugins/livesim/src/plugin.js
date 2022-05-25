@@ -72,10 +72,9 @@ function showCountdown(player, countdownTime) {
   countdownValue.className = 'vjs-countdown-value';
 
   if ("message" in _options.preLive) {
+    console.log(_options.preLive.message);
     countdownLabel.innerHTML = _options.preLive.message;
-    //countdownValue.innerHTML = formatCountdownString(countdownTime);
 
-    countdownTime
     var intId = setInterval(function() {
       countdownTime--;
       if (countdownTime <= 0) {
@@ -95,11 +94,10 @@ function showCountdown(player, countdownTime) {
   countdownOverlay.appendChild(countdownLabel);
   countdownOverlay.appendChild(countdownValue);
   player.el().appendChild(countdownOverlay);
-
-  // Update countdown every second
 }
 
 function formatCountdownString(seconds) {
+  console.log("formatCountdownString", seconds);
   seconds = Number(seconds);
   var d = Math.floor(seconds / (3600*24));
   var h = Math.floor(seconds % (3600*24) / 3600);
@@ -279,7 +277,7 @@ const livesim = function(options) {
           toggleBigPlayButton(_player, false);
 
           var timeTilLive =  (_streamStart - _pageloadDateTime.getTime()) / 1000; // seconds
-          if (DEBUG_MODE) console.log("showCountdown w ", timeTilLive);
+          if (DEBUG_MODE) console.log("showCountdown", timeTilLive);
           showCountdown(_player, timeTilLive);
           break;
         case 2:
