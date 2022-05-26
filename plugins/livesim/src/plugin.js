@@ -9,7 +9,7 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
 // URL for Brightcove's Video and Playlist APIs
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 const BC_BASE_URL = "https://edge.api.brightcove.com/playback/v1/accounts/6200858053001/";
 const videoURL = "videos/${videoId}";
 const playlistURL = "playlists/${playlistId}";
