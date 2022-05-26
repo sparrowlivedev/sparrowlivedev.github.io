@@ -78,10 +78,11 @@ function showCountdown(player, countdownTime) {
 
     var intId = setInterval(function() {
       countdownTime--;
+      // If the countdown has ended
       if (countdownTime <= 0) {
-        clearInterval(intId);
-        player.el().removeChild(player.el().lastChild);
-        livestreamVideo(player);
+        clearInterval(intId); // Stop the loop
+        player.el().removeChild(player.el().lastChild); // Remove countdown overlay
+        livestreamVideo(player); // Start the video
       } else {
         countdownValue.innerHTML = formatCountdownString(countdownTime);
       }
@@ -171,9 +172,11 @@ function livestreamVideo(player) {
 
   toggleHoverToControl(player, true);
   toggleBigPlayButton(player, true);
+  updateLiveTime(player, pageloadVideoTime);
+  showLiveControls(player);
 
   player.on("play", function() {
-    if (_streamState != 2) return; // Only do the following when we're in the LIVE state
+    if (_streamState != 2) return; // Don't proceed if not LIVE
     updateLiveTime(player, pageloadVideoTime);
     player.liveTracker.stopTracking();
     showLiveControls(player);
@@ -280,12 +283,11 @@ const livesim = function(options) {
       } else {
         console.log("livesim not enabled");
       }
-
     });
 
     // Play the video in the player
     _player.on('loadedmetadata', function() {
-      if (DEBUG_MODE && _first_run) _streamState = 2;
+      if (DEBUG_MODE && _first_run) _streamState = 1;
       switchStreamState(_player, _streamState);
       _first_run = false;
     });
